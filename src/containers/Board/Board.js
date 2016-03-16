@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 export default class Board extends Component {
   render() {
+    const styles = require('./Board.scss');
     return (
-      <div className='board'>This board</div>
+      <div className={styles.Board}>This board</div>
     );
   }
 }

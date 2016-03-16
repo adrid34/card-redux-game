@@ -1,4 +1,6 @@
 var path = require('path');
+var autoprefixer = require('autoprefixer');
+// var precss = require('precss');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -11,8 +13,20 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]',
+          'postcss-loader?browsers=last 2 version',
+          'sass?outputStyle=expanded&sourceMap'
+        ]
+      },
     ]
+  },
+  postcss: function() {
+    return [autoprefixer];
   },
   progress: true,
   resolve: {
