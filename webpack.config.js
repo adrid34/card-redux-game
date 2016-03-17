@@ -1,6 +1,5 @@
 var path = require('path');
 var autoprefixer = require('autoprefixer');
-// var precss = require('precss');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
