@@ -1,4 +1,4 @@
-React with Redux -- Card Game
+React with Redux -- Card Game (WIP)
 =============================
 
 In order to develop my abstract thinking I figured it would be cool to make a game.
