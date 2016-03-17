@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Board } from './containers';
-import './styles/base/base.scss';
+import './styles/app.scss';
 
 class App extends Component {
   render() {
