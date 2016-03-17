@@ -5,11 +5,11 @@ export default class Player extends Component {
   static propTypes = {
     name: PropTypes.string,
     hand: PropTypes.array,
-    deck: PropTypes.array
+    deck: PropTypes.array,
   }
 
   render() {
-    const { name, hand, deck } = this.props;
+    const { name } = this.props;
     const styles = require('./Player.scss');
 
     return (
