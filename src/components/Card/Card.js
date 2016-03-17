@@ -5,7 +5,7 @@ export default class Card extends Component {
     name: PropTypes.string.isRequired,
     mana: PropTypes.number,
     attack: PropTypes.number,
-    defense: PropTypes.number
+    defense: PropTypes.number,
   }
 
   render() {

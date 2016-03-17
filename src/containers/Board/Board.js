@@ -7,7 +7,7 @@ export default class Board extends Component {
     return (
       <div className={styles.Board}>
         { /* <Player name='Opponent' /> */ }
-        <Player name='Inooid' />
+        <Player name="Inooid" />
       </div>
     );
   }
