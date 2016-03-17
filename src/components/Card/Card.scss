@@ -29,6 +29,7 @@ $stats-distance: 10px;
   padding: 12px 16px;
   border-radius: 100%;
   color: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 }
 
 .CardMana {
@@ -36,7 +37,6 @@ $stats-distance: 10px;
   background: blue;
   top: -$stats-distance;
   left: -$stats-distance;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
 }
 
 .CardAttack {
