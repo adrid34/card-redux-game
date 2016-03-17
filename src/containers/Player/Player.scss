@@ -1,0 +1,18 @@
+.Player {
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.PlayerHandWrapper {
+  flex-grow: 1;
+}
+
+.PlayerName {
+  display: inline;
+  color: #ffffff;
+  background: rgba(0,0,0,0.75);
+  padding: 10px 15px;
+  border-radius: 0 5px 5px 0;
+}
