@@ -2,6 +2,7 @@ React with Redux -- Card Game (WIP)
 =============================
 
 [![Build Status](https://travis-ci.org/inooid/react-redux-card-game.svg?branch=master)](https://travis-ci.org/inooid/react-redux-card-game)
+[![Code Climate](https://codeclimate.com/github/inooid/react-redux-card-game/badges/gpa.svg)](https://codeclimate.com/github/inooid/react-redux-card-game)
 
 In order to develop my abstract thinking I figured it would be cool to make a game.
 Recently I have been playing a lot of [Hearthstone: Heroes of Warcraft](http://us.battle.net/en/int?r=hearthstone)

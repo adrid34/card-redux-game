@@ -2,6 +2,6 @@
   "parser": "babel-eslint",
   "extends": "airbnb",
   "rules": {
-    "react/prefer-stateless-function": "warn"
+    "react/prefer-stateless-function": 1,
   },
 }

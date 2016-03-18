@@ -6,7 +6,11 @@ import ReactDOM from 'react-dom';
 import { Board } from './containers';
 import './styles/app.scss';
 
-const store = createStore(() => { return {}; });
+if (module.hot) {
+  module.hot.accept();
+}
+
+const store = createStore(() => ({}));
 
 class App extends Component {
   render() {
