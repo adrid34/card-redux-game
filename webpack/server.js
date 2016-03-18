@@ -6,10 +6,9 @@ const port = 3000;
 
 const compiler = webpack(config);
 const server = new WebpackDevServer(compiler, {
-  contentBase: 'www',
   hot: true,
-  filename: 'bundle.js',
-  publicPath: '/',
+  filename: config.output.filename,
+  publicPath: config.output.publicPath,
   stats: {
     colors: true,
   },
