@@ -24,11 +24,14 @@ export class Hand extends Component {
   render() {
     const { cards } = this.props;
     const styles = require('./Hand.scss');
+
+    const cardList = cards.map((card, index) => (
+      <Card {...card} key={card.id} index={index} onClick={this.placeCard} />
+    ));
+
     return (
       <div className={styles.Hand}>
-        { cards.map((card, index) => (
-          <Card {...card} key={card.id} index={index} onClick={this.placeCard} />
-        )) }
+        { cardList }
       </div>
     );
   }
