@@ -1,17 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import { Record } from 'immutable';
 
 export default class Card extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    mana: PropTypes.number,
-    attack: PropTypes.number,
-    defense: PropTypes.number,
+    card: PropTypes.instanceOf(Record).isRequired,
   }
 
   render() {
-    const { name, mana, attack, defense } = this.props;
+    const { name, mana, attack, defense } = this.props.card;
     const styles = require('./Card.scss');
 
     return (

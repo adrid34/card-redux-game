@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import { List } from 'immutable';
 import { connect } from 'react-redux';
 import { Hand } from 'components';
 
 export class Player extends Component {
   static propTypes = {
     name: PropTypes.string,
-    hand: PropTypes.array,
+    hand: PropTypes.instanceOf(List),
     deck: PropTypes.array,
   }
 

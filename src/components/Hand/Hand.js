@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { List } from 'immutable';
 import { Card } from 'components';
 
 export default class Hand extends Component {
   static propTypes = {
-    cards: PropTypes.array,
+    cards: PropTypes.instanceOf(List),
     dispatch: PropTypes.func,
   }
 
@@ -12,7 +13,7 @@ export default class Hand extends Component {
     const styles = require('./Hand.scss');
 
     const cardList = cards.map((card, index) => (
-      <Card {...card} key={card.id} index={index} />
+      <Card card={card} key={card.id} index={index} />
     ));
 
     return (
