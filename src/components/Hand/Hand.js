@@ -1,20 +1,37 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { Card } from 'components';
 
-export default class Hand extends Component {
+export class Hand extends Component {
   static propTypes = {
     cards: PropTypes.array,
+    dispatch: PropTypes.func,
+  }
+
+  constructor(props) {
+    super(props);
+    this.placeCard = this.placeCard.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
+  placeCard(card, index) {
+    this.props.dispatch({ card, index, type: 'PLACE_CARD' });
   }
 
   render() {
+    const { cards } = this.props;
     const styles = require('./Hand.scss');
     return (
       <div className={styles.Hand}>
-        <Card name="Gabria Warden" mana={1} attack={5} defense={1} />
-        <Card name="Abusive Sergeant" mana={1} attack={2} defense={1} />
-        <Card name="Acolyte of Pain" mana={3} />
-        <Card name="Azure Drake" mana={5} attack={4} defense={4} />
+        { cards.map((card, index) => (
+          <Card {...card} key={card.id} index={index} onClick={this.placeCard} />
+        )) }
       </div>
     );
   }
 }
+
+export default connect((state) => ({ cards: state }))(Hand);
