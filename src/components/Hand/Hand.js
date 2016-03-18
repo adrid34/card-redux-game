@@ -1,24 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { Card } from 'components';
 
-export class Hand extends Component {
+export default class Hand extends Component {
   static propTypes = {
     cards: PropTypes.array,
     dispatch: PropTypes.func,
-  }
-
-  constructor(props) {
-    super(props);
-    this.placeCard = this.placeCard.bind(this);
-  }
-
-  componentDidMount() {
-    console.log(this.props);
-  }
-
-  placeCard(card, index) {
-    this.props.dispatch({ card, index, type: 'PLACE_CARD' });
   }
 
   render() {
@@ -26,7 +12,7 @@ export class Hand extends Component {
     const styles = require('./Hand.scss');
 
     const cardList = cards.map((card, index) => (
-      <Card {...card} key={card.id} index={index} onClick={this.placeCard} />
+      <Card {...card} key={card.id} index={index} />
     ));
 
     return (
@@ -36,5 +22,3 @@ export class Hand extends Component {
     );
   }
 }
-
-export default connect((state) => ({ cards: state }))(Hand);
