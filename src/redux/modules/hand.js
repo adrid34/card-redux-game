@@ -3,7 +3,9 @@ import { List } from 'immutable';
 import { DRAW_CARD } from './deck';
 import { CardModel } from './card';
 
+const MAX_CARDS = 10;
 const PLAY_CARD = 'PLAY_CARD';
+// const HAND_TOO_FULL = 'HAND_TOO_FULL';
 
 const initialState = new List([
   new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 }),
@@ -17,6 +19,8 @@ export function playCard(index) {
 }
 
 function drawCardHandler(state) {
+  if (state.size + 1 > MAX_CARDS) return state;
+
   const newCard = new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 });
   return state.push(newCard);
 }
