@@ -1,13 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { List } from 'immutable';
-import { connect } from 'react-redux';
-
-import { drawCard } from 'redux/modules/deck';
-import { playCard } from 'redux/modules/hand';
 import { Hand } from 'components';
 
-export class Player extends Component {
+export default class Player extends Component {
   static propTypes = {
     name: PropTypes.string,
     hand: PropTypes.instanceOf(List),
@@ -34,10 +29,3 @@ export class Player extends Component {
     );
   }
 }
-
-const mapStateToProps = ({ player: { name, hand } }) => ({ name, hand });
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ playCard, drawCard }, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
