@@ -1,5 +1,6 @@
 import createReducer from 'redux/utils/createReducer';
 import { List } from 'immutable';
+import { DRAW_CARD } from './deck';
 import { CardModel } from './card';
 
 const initialState = new List([
@@ -9,4 +10,13 @@ const initialState = new List([
   new CardModel({ id: 4, name: 'Azure Drake', mana: 5, attack: 4, defense: 4 }),
 ]);
 
-export default createReducer(initialState, {});
+function drawCardHandler(state) {
+  const newCard = new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 });
+  return state.push(newCard);
+}
+
+const handlers = {
+  [DRAW_CARD]: drawCardHandler,
+};
+
+export default createReducer(initialState, handlers);
