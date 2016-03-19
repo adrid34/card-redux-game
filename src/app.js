@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import ReactDOM from 'react-dom';
 
-import rootReducer from 'redux/modules/rootReducer';
+import configureStore from 'redux/configureStore';
 import { newGame } from 'redux/modules/player';
-import { Board } from './containers';
+import { DevTools, Board } from './containers';
 import './styles/app.scss';
 
 if (module.hot) {
   module.hot.accept();
 }
 
-const store = createStore(rootReducer);
+const store = configureStore();
 store.dispatch(newGame('Inooid'));
 
 class App extends Component {
@@ -23,7 +22,10 @@ class App extends Component {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <div style={{ width: '100%', height: '100%' }}>
+      <App />
+      <DevTools />
+    </div>
   </Provider>,
   document.getElementById('app')
 );
