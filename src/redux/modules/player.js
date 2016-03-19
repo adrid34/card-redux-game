@@ -1,19 +1,18 @@
+import handReducer from './hand';
+
 const NEW_GAME = 'NEW_GAME';
 
-const initialState = '';
-
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case NEW_GAME:
-      return action.name;
-    default:
-      return state;
-  }
+export function newGame(name) {
+  return { name, type: NEW_GAME };
 }
 
-export function newGame(name) {
+function nameReducer(state = '', action) {
+  return action.type === NEW_GAME ? action.name : state;
+}
+
+export default function playerReducer(state = {}, action) {
   return {
-    name,
-    type: NEW_GAME,
+    name: nameReducer(state.name, action),
+    hand: handReducer(state.hand, action),
   };
 }
