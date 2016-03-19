@@ -11,12 +11,11 @@ export class Player extends Component {
     name: PropTypes.string,
     hand: PropTypes.instanceOf(List),
     deck: PropTypes.array,
-    drawCard: PropTypes.func.isRequired,
+    drawACard: PropTypes.func.isRequired,
   }
 
   render() {
-    console.log(this.props);
-    const { name, hand, drawCard: drawACard } = this.props;
+    const { name, hand, drawACard } = this.props;
     const styles = require('./Player.scss');
 
     return (
@@ -33,6 +32,8 @@ export class Player extends Component {
 }
 
 const mapStateToProps = ({ player: { name, hand = [] } }) => ({ name, hand });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ drawCard }, dispatch);
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({ drawACard: drawCard }, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);
