@@ -1,13 +1,6 @@
 import createReducer from 'redux/utils/createReducer';
-import { List, Record as record } from 'immutable';
-
-export const CardModel = record({
-  id: null,
-  name: '',
-  mana: null,
-  attack: null,
-  defense: null,
-});
+import { List } from 'immutable';
+import { CardModel } from './card';
 
 const initialState = new List([
   new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 }),
