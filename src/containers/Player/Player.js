@@ -31,7 +31,7 @@ export class Player extends Component {
   }
 }
 
-const mapStateToProps = ({ player: { name, hand = [] } }) => ({ name, hand });
+const mapStateToProps = ({ player: { name, hand } }) => ({ name, hand });
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({ drawACard: drawCard }, dispatch)
 );
