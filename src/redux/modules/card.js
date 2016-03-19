@@ -9,6 +9,8 @@ export class CardModel extends record({
 }) {
   constructor(obj) {
     super(obj);
+
+    // TODO: find a way to make this even more unique
     this.uniqId = this.id + +new Date();
   }
 }
