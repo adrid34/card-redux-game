@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { List } from 'immutable';
 import { connect } from 'react-redux';
+
+import { drawCard } from 'redux/modules/deck';
 import { Hand } from 'components';
 
 export class Player extends Component {
@@ -8,16 +11,20 @@ export class Player extends Component {
     name: PropTypes.string,
     hand: PropTypes.instanceOf(List),
     deck: PropTypes.array,
+    drawCard: PropTypes.func.isRequired,
   }
 
   render() {
-    const { name, hand } = this.props;
+    console.log(this.props);
+    const { name, hand, drawCard: drawACard } = this.props;
     const styles = require('./Player.scss');
 
     return (
       <div className={styles.Player}>
         <div className={styles.PlayerHandWrapper}>
-          <h1 className={styles.PlayerName}>{ name || 'Unnamed' }</h1>
+          <h1 className={styles.PlayerName} onClick={drawACard}>
+            { name || 'Unnamed' }
+          </h1>
           <Hand cards={hand} />
         </div>
       </div>
@@ -26,5 +33,6 @@ export class Player extends Component {
 }
 
 const mapStateToProps = ({ player: { name, hand = [] } }) => ({ name, hand });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ drawCard }, dispatch);
 
-export default connect(mapStateToProps)(Player);
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
