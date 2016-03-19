@@ -1,18 +1,18 @@
-import createReducer from 'redux/utils/createReducer';
+import handReducer from './hand';
 
 const NEW_GAME = 'NEW_GAME';
-const initialState = '';
-
-function NEW_GAME_HANDLER(state, action) {
-  return action.name;
-}
 
 export function newGame(name) {
   return { name, type: NEW_GAME };
 }
 
+function nameReducer(state = '', action) {
+  return action.type === NEW_GAME ? action.name : state;
+}
 
-const handlers = {
-  [NEW_GAME]: NEW_GAME_HANDLER,
-};
-export default createReducer(initialState, handlers);
+export default function playerReducer(state = {}, action) {
+  return {
+    name: nameReducer(state.name, action),
+    hand: handReducer(state.hand, action),
+  };
+}

@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import ReactDOM from 'react-dom';
 
-import handReducer from './redux/modules/hand';
 import playerReducer, { newGame } from './redux/modules/player';
 import { Board } from './containers';
 import './styles/app.scss';
@@ -13,10 +12,7 @@ if (module.hot) {
 }
 
 const reducers = combineReducers({
-  player: combineReducers({
-    name: playerReducer,
-    hand: handReducer,
-  }),
+  player: playerReducer,
 });
 const store = createStore(reducers);
 store.dispatch(newGame('Inooid'));
