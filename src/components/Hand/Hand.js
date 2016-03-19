@@ -11,9 +11,16 @@ export default class Hand extends Component {
   render() {
     const { cards, playCard } = this.props;
     const styles = require('./Hand.scss');
+    const margin = cards.count() * 6;
 
     const cardList = cards.map((card, index) => (
-      <Card card={card} key={card.uniqId} index={index} onCardClick={playCard} />
+      <Card
+        card={card}
+        key={card.uniqId}
+        index={index}
+        margin={margin}
+        onCardClick={playCard}
+      />
     ));
 
     return (
