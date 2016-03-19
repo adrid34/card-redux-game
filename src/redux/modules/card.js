@@ -1,5 +1,7 @@
 import { Record as record } from 'immutable';
 
+let cardModelCount = 0;
+
 export class CardModel extends record({
   id: null,
   name: '',
@@ -9,8 +11,6 @@ export class CardModel extends record({
 }) {
   constructor(obj) {
     super(obj);
-
-    // TODO: find a way to make this even more unique
-    this.uniqId = this.id + +new Date();
+    this.uniqId = cardModelCount++;
   }
 }
