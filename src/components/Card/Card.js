@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { Record } from 'immutable';
+import { CardModel } from 'redux/modules/card';
 
 export default class Card extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
-    card: PropTypes.instanceOf(Record).isRequired,
+    card: PropTypes.instanceOf(CardModel).isRequired,
   }
 
   render() {
