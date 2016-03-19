@@ -13,7 +13,7 @@ export default class Hand extends Component {
     const styles = require('./Hand.scss');
 
     const cardList = cards.map((card, index) => (
-      <Card card={card} key={card.id} index={index} />
+      <Card card={card} key={card.uniqId} index={index} />
     ));
 
     return (
