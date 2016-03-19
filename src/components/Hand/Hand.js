@@ -1,19 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import { List } from 'immutable';
 import { Card } from 'components';
 
 export default class Hand extends Component {
   static propTypes = {
-    cards: PropTypes.array,
+    cards: PropTypes.instanceOf(List),
+    playCard: PropTypes.func.isRequired,
   }
 
   render() {
+    const { cards, playCard } = this.props;
     const styles = require('./Hand.scss');
+
+    const cardList = cards.map((card, index) => (
+      <Card card={card} key={card.uniqId} index={index} onCardClick={playCard} />
+    ));
+
     return (
       <div className={styles.Hand}>
-        <Card name="Gabria Warden" mana={1} attack={5} defense={1} />
-        <Card name="Abusive Sergeant" mana={1} attack={2} defense={1} />
-        <Card name="Acolyte of Pain" mana={3} />
-        <Card name="Azure Drake" mana={5} attack={4} defense={4} />
+        { cardList }
       </div>
     );
   }
