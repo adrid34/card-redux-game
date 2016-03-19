@@ -1,10 +1,5 @@
 import handReducer from './hand';
-
-const NEW_GAME = 'NEW_GAME';
-
-export function newGame(name) {
-  return { name, type: NEW_GAME };
-}
+import { NEW_GAME } from './game';
 
 function nameReducer(state = '', action) {
   return action.type === NEW_GAME ? action.name : state;

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 
 import configureStore from 'redux/configureStore';
-import { newGame } from 'redux/modules/player';
+import { newGame } from 'redux/modules/game';
 import { DevTools, Board } from './containers';
 import './styles/app.scss';
 
