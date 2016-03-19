@@ -5,7 +5,6 @@ import { CardModel } from './card';
 
 const MAX_CARDS = 10;
 const PLAY_CARD = 'PLAY_CARD';
-// const HAND_TOO_FULL = 'HAND_TOO_FULL';
 
 const initialState = new List([
   new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 }),
