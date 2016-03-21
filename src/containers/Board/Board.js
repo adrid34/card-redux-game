@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import { List } from 'immutable';
 import { connect } from 'react-redux';
 
 import { drawCard } from 'redux/modules/deck';
 import { playCard } from 'redux/modules/hand';
-import { Player } from 'containers';
+import { Player, Opponent } from 'components';
 
 export class Board extends Component {
   static propTypes = {
@@ -22,12 +21,12 @@ export class Board extends Component {
   }
 
   render() {
-    const { player, playerActions } = this.props;
+    const { player, opponent, playerActions } = this.props;
     const styles = require('./Board.scss');
 
     return (
       <div className={styles.Board}>
-        { /* <Player {...opponent} actions={playerActions} /> */ }
+        <Opponent {...opponent} />
         <Player {...player} actions={playerActions} />
       </div>
     );

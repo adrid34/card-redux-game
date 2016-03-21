@@ -23,9 +23,10 @@ export default class Card extends Component {
     const { name, mana, attack, defense } = this.props.card;
     const styles = require('./Card.scss');
     const marginStyle = `-${margin}px`;
+    const rootClass = `${styles.Card} ${styles.CardYours}`;
 
     return (
-      <div className={styles.Card} style={{ margin: `auto ${marginStyle}` }} onClick={this.playCard}>
+      <div className={rootClass} style={{ margin: `auto ${marginStyle}` }} onClick={this.playCard}>
         <div className={styles.CardMana}>{ mana || 0 }</div>
         <h1 className={styles.CardName}>{ name }</h1>
         { attack ? <div className={styles.CardAttack}>{ attack }</div> : null }
