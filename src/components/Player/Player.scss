@@ -1,4 +1,5 @@
 .Player {
+  position: relative;
   display: flex;
   align-items: flex-end;
   flex-flow: row wrap;
@@ -10,6 +11,7 @@
 }
 
 .PlayerName {
+  position: absolute;
   display: inline;
   color: #ffffff;
   background: rgba(0,0,0,0.75);
