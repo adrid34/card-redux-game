@@ -5,6 +5,7 @@ export default class Card extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
+    margin: PropTypes.number.isRequired,
     onCardClick: PropTypes.func.isRequired,
   }
 
@@ -18,11 +19,14 @@ export default class Card extends Component {
   }
 
   render() {
+    const { margin } = this.props;
     const { name, mana, attack, defense } = this.props.card;
     const styles = require('./Card.scss');
+    const marginStyle = `-${margin}px`;
+    const rootClass = `${styles.Card} ${styles.CardYours}`;
 
     return (
-      <div className={styles.Card} onClick={this.playCard}>
+      <div className={rootClass} style={{ margin: `auto ${marginStyle}` }} onClick={this.playCard}>
         <div className={styles.CardMana}>{ mana || 0 }</div>
         <h1 className={styles.CardName}>{ name }</h1>
         { attack ? <div className={styles.CardAttack}>{ attack }</div> : null }

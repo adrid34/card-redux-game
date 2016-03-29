@@ -12,7 +12,7 @@ if (module.hot) {
 }
 
 const store = configureStore();
-store.dispatch(newGame('Inooid'));
+store.dispatch(newGame({ yourName: 'Inooid', opponentName: 'OpponentName' }));
 
 class App extends Component {
   render() {
