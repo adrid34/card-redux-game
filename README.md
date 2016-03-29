@@ -12,3 +12,7 @@ Follow me in the journey that will be rebuilding this amazing card game.
 
 I am in no way affiliated with *Blizzard Entertainment* or *Hearthstone: Heroes of Warcraft* and see this
 project as part of my learning experience.
+
+### Current progress:
+Updated: 29th of March 2016
+![Current progress](https://cloud.githubusercontent.com/assets/1291263/14110176/a6f7e970-f5c5-11e5-9ac8-742b375ae23c.png)
