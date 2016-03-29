@@ -10,8 +10,10 @@
   flex-grow: 1;
 }
 
+// FIX ME: PlayerName drops when no cards in hand
 .PlayerName {
   position: absolute;
+  top: 50%;
   display: inline;
   color: #ffffff;
   background: rgba(0,0,0,0.75);
