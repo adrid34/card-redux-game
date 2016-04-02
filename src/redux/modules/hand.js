@@ -4,7 +4,7 @@ import { DRAW_CARD } from './deck';
 import { CardModel } from './card';
 
 const MAX_CARDS = 10;
-const PLAY_CARD = 'PLAY_CARD';
+export const PLAY_CARD = 'PLAY_CARD';
 
 const initialState = new List([
   new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 }),
@@ -13,8 +13,13 @@ const initialState = new List([
   new CardModel({ id: 4, name: 'Azure Drake', mana: 5, attack: 4, defense: 4 }),
 ]);
 
-export function playCard(index) {
-  return { index, type: PLAY_CARD };
+export function playCard({ card, handIndex, boardIndex = 3 }) {
+  return {
+    card,
+    handIndex,
+    boardIndex,
+    type: PLAY_CARD,
+  };
 }
 
 function drawCardHandler(state) {
@@ -25,7 +30,7 @@ function drawCardHandler(state) {
 }
 
 function playCardHandler(state, action) {
-  return state.delete(action.index);
+  return state.delete(action.handIndex);
 }
 
 const handlers = {
