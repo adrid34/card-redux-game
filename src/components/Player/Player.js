@@ -19,13 +19,15 @@ export default class Player extends Component {
     const styles = require('./Player.scss');
 
     return (
-      <div className={styles.Player}>
-        <div className={styles.PlayerHandWrapper}>
-          <h1 className={styles.PlayerName} onClick={actions.drawCard}>
-            { name || 'Unnamed' }
-          </h1>
-          <Hand cards={hand} playCard={actions.playCard} />
-          <BoardSide board={board} />
+      <div className="full-size">
+        <BoardSide board={board} />
+        <div className={styles.Player}>
+          <div className={styles.PlayerHandWrapper}>
+            <h1 className={styles.PlayerName} onClick={actions.drawCard}>
+              { name || 'Unnamed' }
+            </h1>
+            <Hand cards={hand} playCard={actions.playCard} />
+          </div>
         </div>
       </div>
     );
