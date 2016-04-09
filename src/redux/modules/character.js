@@ -3,6 +3,6 @@ const initialState = {
   mana: 1,
 };
 
-export default function characterReducer(state = initialState, action) {
+export default function characterReducer(state = initialState) {
   return state;
 }
