@@ -1,13 +1,16 @@
-import handReducer from './hand';
+import { combineReducers } from 'redux';
+import hand from './hand';
+import character from './character';
+import board from './board';
 import { NEW_GAME } from './game';
 
-function nameReducer(state = '', action) {
+function name(state = '', action) {
   return action.type === NEW_GAME ? action.yourName : state;
 }
 
-export default function playerReducer(state = {}, action) {
-  return {
-    name: nameReducer(state.name, action),
-    hand: handReducer(state.hand, action),
-  };
-}
+export default combineReducers({
+  name,
+  character,
+  hand,
+  board,
+});

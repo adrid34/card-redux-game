@@ -15,7 +15,8 @@ export default class Card extends Component {
   }
 
   playCard() {
-    this.props.onCardClick(this.props.index);
+    const { index, card } = this.props;
+    this.props.onCardClick({ card, handIndex: index });
   }
 
   render() {
