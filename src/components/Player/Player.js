@@ -23,7 +23,7 @@ export class Player extends Component {
 
     return (
       <div className={sharedStyles.fullSize}>
-        <BoardSide board={board} />
+        <BoardSide board={board} playCard={actions.playCard} />
         <div className={styles.Player}>
           <div className={styles.PlayerHandWrapper}>
             <h1 className={styles.PlayerName} onClick={actions.drawCard}>
