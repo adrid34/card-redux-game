@@ -17,9 +17,10 @@ export default class Player extends Component {
   render() {
     const { name, hand, board, actions } = this.props;
     const styles = require('./Player.scss');
+    const sharedStyles = require('./../shared/styles.scss');
 
     return (
-      <div className="full-size">
+      <div className={sharedStyles.fullSize}>
         <BoardSide board={board} />
         <div className={styles.Player}>
           <div className={styles.PlayerHandWrapper}>
