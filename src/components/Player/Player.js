@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
 import { Hand, BoardSide } from 'components';
 
-export default class Player extends Component {
+export class Player extends Component {
   static propTypes = {
     name: PropTypes.string,
     hand: PropTypes.instanceOf(List),
@@ -34,3 +36,5 @@ export default class Player extends Component {
     );
   }
 }
+
+export default DragDropContext(HTML5Backend)(Player);
