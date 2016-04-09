@@ -13,7 +13,7 @@ const initialState = new List([
   new CardModel({ id: 4, name: 'Azure Drake', mana: 5, attack: 4, defense: 4 }),
 ]);
 
-export function playCard({ card, handIndex, boardIndex = 3 }) {
+export function playCard({ card, handIndex, boardIndex = 0 }) {
   return {
     card,
     handIndex,
