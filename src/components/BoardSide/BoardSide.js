@@ -3,19 +3,6 @@ import { DropTarget as dropTarget } from 'react-dnd';
 import { List } from 'immutable';
 import { Minion } from 'components';
 
-const boardTarget = {
-  drop(props, monitor) {
-    props.playCard(monitor.getItem());
-  },
-};
-
-function collect(connect, monitor) {
-  return {
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-  };
-}
-
 export class BoardSide extends Component {
   static propTypes = {
     board: PropTypes.instanceOf(List),
@@ -50,6 +37,20 @@ export class BoardSide extends Component {
       </div>
     );
   }
+}
+
+const boardTarget = {
+  drop(props, monitor) {
+    props.playCard(monitor.getItem());
+  },
+};
+
+function collect(connect, monitor) {
+  console.log(connect, monitor);
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+  };
 }
 
 export default dropTarget('CARD', boardTarget, collect)(BoardSide);
