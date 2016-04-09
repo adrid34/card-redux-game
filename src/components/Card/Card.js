@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { DragSource } from 'react-dnd';
+import { DragSource as dragSource } from 'react-dnd';
 import { CardModel } from 'redux/modules/card';
 
 const cardSource = {
@@ -11,10 +11,9 @@ const cardSource = {
   },
 };
 
-function collect(connect, monitor) {
+function collect(connect) {
   return {
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
   };
 }
 
@@ -24,7 +23,6 @@ export class Card extends Component {
     card: PropTypes.instanceOf(CardModel).isRequired,
     margin: PropTypes.number.isRequired,
     onCardClick: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired,
     connectDragSource: PropTypes.func.isRequired,
   }
 
@@ -39,14 +37,14 @@ export class Card extends Component {
   }
 
   render() {
-    const { margin, isDragging, connectDragSource } = this.props;
+    const { margin, connectDragSource } = this.props;
     const { name, mana, attack, defense } = this.props.card;
     const styles = require('./Card.scss');
     const marginStyle = `-${margin}px`;
     const rootClass = `${styles.Card} ${styles.CardYours}`;
 
     return connectDragSource(
-      <div className={rootClass} style={{ margin: `auto ${marginStyle}`, opacity: isDragging ? 0.5 : 1 }}>
+      <div className={rootClass} style={{ margin: `auto ${marginStyle}` }}>
         <div className={styles.CardMana}>{ mana || 0 }</div>
         <h1 className={styles.CardName}>{ name }</h1>
         { attack ? <div className={styles.CardAttack}>{ attack }</div> : null }
@@ -56,4 +54,4 @@ export class Card extends Component {
   }
 }
 
-export default DragSource('CARD', cardSource, collect)(Card);
+export default dragSource('CARD', cardSource, collect)(Card);

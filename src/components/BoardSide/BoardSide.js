@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { DropTarget } from 'react-dnd';
+import { DropTarget as dropTarget } from 'react-dnd';
 import { List } from 'immutable';
 import { Minion } from 'components';
 
@@ -34,7 +34,7 @@ export class BoardSide extends Component {
     return connectDropTarget(
       <div className={styles.BoardSide} style={{ backgroundColor: 'red' }}>
         { minions }
-        {isOver &&
+        { isOver &&
           <div style={{
             position: 'absolute',
             top: 0,
@@ -44,11 +44,12 @@ export class BoardSide extends Component {
             zIndex: 1,
             opacity: 0.5,
             backgroundColor: 'yellow',
-          }} />
+          }}
+          />
         }
       </div>
     );
   }
 }
 
-export default DropTarget('CARD', boardTarget, collect)(BoardSide);
+export default dropTarget('CARD', boardTarget, collect)(BoardSide);

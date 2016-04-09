@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { DragDropContext } from 'react-dnd';
+import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
 import { Hand, BoardSide } from 'components';
@@ -37,4 +37,4 @@ export class Player extends Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(Player);
+export default dragDropContext(HTML5Backend)(Player);
