@@ -59,7 +59,7 @@ const boardTarget = {
       return props.playCard({ ...card, boardIndex: props.board.size });
     }
 
-    return props.playCard({ ...card, boardIndex: 0 });
+    return props.playCard(card);
   },
 };
 

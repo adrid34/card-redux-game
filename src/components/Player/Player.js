@@ -29,7 +29,7 @@ export class Player extends Component {
             <h1 className={styles.PlayerName} onClick={actions.drawCard}>
               { name || 'Unnamed' }
             </h1>
-            <Hand cards={hand} playCard={actions.playCard} />
+            <Hand cards={hand} />
           </div>
         </div>
       </div>
