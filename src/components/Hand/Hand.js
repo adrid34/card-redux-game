@@ -10,7 +10,7 @@ export default class Hand extends Component {
   render() {
     const { cards } = this.props;
     const styles = require('./Hand.scss');
-    const margin = cards.count() * 6;
+    const margin = cards.size * 6;
 
     const cardList = cards.map((card, index) => (
       <DraggableCard
