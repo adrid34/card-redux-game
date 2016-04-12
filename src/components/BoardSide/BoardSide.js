@@ -26,7 +26,7 @@ export class BoardSide extends Component {
     ));
 
     return connectDropTarget(
-      <div className={styles.BoardSide} style={{ backgroundColor: 'red' }}>
+      <div className={styles.BoardSide}>
         { minions }
       </div>
     );
