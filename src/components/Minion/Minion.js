@@ -3,7 +3,7 @@ import { CardModel } from 'redux/modules/card';
 
 export default class Minion extends Component {
   static propTypes = {
-    card: PropTypes.instanceOf(CardModel),
+    card: PropTypes.instanceOf(CardModel).isRequired,
   }
 
   render() {
