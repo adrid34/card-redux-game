@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { DragDropContext as dragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
 import { Hand, BoardSide } from 'components';
 
-export default class Player extends Component {
+export class Player extends Component {
   static propTypes = {
     name: PropTypes.string,
     hand: PropTypes.instanceOf(List),
@@ -21,16 +23,18 @@ export default class Player extends Component {
 
     return (
       <div className={sharedStyles.fullSize}>
-        <BoardSide board={board} />
+        <BoardSide board={board} playCard={actions.playCard} />
         <div className={styles.Player}>
           <div className={styles.PlayerHandWrapper}>
             <h1 className={styles.PlayerName} onClick={actions.drawCard}>
               { name || 'Unnamed' }
             </h1>
-            <Hand cards={hand} playCard={actions.playCard} />
+            <Hand cards={hand} />
           </div>
         </div>
       </div>
     );
   }
 }
+
+export default dragDropContext(HTML5Backend)(Player);

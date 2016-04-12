@@ -3,7 +3,7 @@ import { CardModel } from 'redux/modules/card';
 
 export default class Minion extends Component {
   static propTypes = {
-    card: PropTypes.instanceOf(CardModel),
+    card: PropTypes.instanceOf(CardModel).isRequired,
   }
 
   render() {
@@ -13,8 +13,8 @@ export default class Minion extends Component {
     return (
       <div className={styles.Minion}>
         <p>Mana: { mana }</p>
-        <p>Attack: { attack }</p>
-        <p>Defense: { defense }</p>
+        <p>Attack: { attack || 0 }</p>
+        <p>Defense: { defense || 0 }</p>
       </div>
     );
   }
