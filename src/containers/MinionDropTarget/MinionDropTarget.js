@@ -7,6 +7,7 @@ import { Minion } from 'components';
 export class MinionDropTarget extends Component {
   static propTypes = {
     connectDropTarget: PropTypes.func.isRequired,
+    boardSize: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
     playCard: PropTypes.func.isRequired,
@@ -24,6 +25,13 @@ export class MinionDropTarget extends Component {
 }
 
 const cardTarget = {
+  canDrop(props) {
+    if (props.boardSize >= 7) {
+      return false;
+    }
+    return true;
+  },
+
   drop(props, monitor, component) {
     const minionIndex = props.index;
     const card = monitor.getItem();

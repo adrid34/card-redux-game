@@ -16,7 +16,13 @@ export class BoardSide extends Component {
     const styles = require('./BoardSide.scss');
 
     const minions = board.map((card, index) => (
-      <MinionDropTarget key={index} index={index} card={card} playCard={playCard} />
+      <MinionDropTarget
+        key={index}
+        index={index}
+        card={card}
+        boardSize={board.size}
+        playCard={playCard}
+      />
     ));
 
     return connectDropTarget(
