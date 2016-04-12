@@ -13,10 +13,6 @@ Follow me in the journey that will be rebuilding this amazing card game.
 I am in no way affiliated with *Blizzard Entertainment* or *Hearthstone: Heroes of Warcraft* and see this
 project as part of my learning experience.
 
-### Current progress:
-Updated: 12 April 2016
-![Current progress](https://cloud.githubusercontent.com/assets/1291263/14457822/9e8f54e2-00ad-11e6-880c-04a370d2c0fc.gif)
-
 Requirements
 ------------
 
@@ -36,4 +32,8 @@ $ npm start    # Compile and launch
 $ open http://localhost:3000
 ```
 
+Current progress:
+-----------------
 
+Updated: 12 April 2016
+![Current progress](https://cloud.githubusercontent.com/assets/1291263/14457822/9e8f54e2-00ad-11e6-880c-04a370d2c0fc.gif)
