@@ -1,25 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import { List } from 'immutable';
-import { Card } from 'components';
+import { DraggableCard } from 'containers';
 
 export default class Hand extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(List),
-    playCard: PropTypes.func.isRequired,
   }
 
   render() {
-    const { cards, playCard } = this.props;
+    const { cards } = this.props;
     const styles = require('./Hand.scss');
     const margin = cards.count() * 6;
 
     const cardList = cards.map((card, index) => (
-      <Card
+      <DraggableCard
         card={card}
         key={card.uniqId}
         index={index}
         margin={margin}
-        onCardClick={playCard}
       />
     ));
 
