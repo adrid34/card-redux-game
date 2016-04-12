@@ -43,11 +43,9 @@ const boardTarget = {
 
   drop(props, monitor, component) {
     const card = monitor.getItem();
-    const isOverBoard = monitor.isOver({ shallow: true });
+    const droppedOnBoard = monitor.isOver({ shallow: true });
 
-    if (!isOverBoard) {
-      return undefined;
-    }
+    if (!droppedOnBoard) return undefined;
 
     const componentRect = findDOMNode(component).getBoundingClientRect();
     const boardMiddleX = componentRect.width / 2;
