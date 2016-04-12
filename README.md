@@ -16,3 +16,24 @@ project as part of my learning experience.
 ### Current progress:
 Updated: 12 April 2016
 ![Current progress](https://cloud.githubusercontent.com/assets/1291263/14457822/9e8f54e2-00ad-11e6-880c-04a370d2c0fc.gif)
+
+Requirements
+------------
+
+* node `^4.2.0`
+* npm `^3.0.0`
+
+Getting Started
+---------------
+
+Just clone the repo and install the necessary node modules:
+
+```shell
+$ git clone https://github.com/inooid/react-redux-card-game.git
+$ cd react-redux-card-game
+$ npm install  # Install Node modules listed in ./package.json (may take a while the first time)
+$ npm start    # Compile and launch
+$ open http://localhost:3000
+```
+
+
