@@ -14,5 +14,5 @@ I am in no way affiliated with *Blizzard Entertainment* or *Hearthstone: Heroes 
 project as part of my learning experience.
 
 ### Current progress:
-Updated: 29th of March 2016
-![Current progress](https://cloud.githubusercontent.com/assets/1291263/14110176/a6f7e970-f5c5-11e5-9ac8-742b375ae23c.png)
+Updated: 12 April 2016
+![Current progress](https://cloud.githubusercontent.com/assets/1291263/14457822/9e8f54e2-00ad-11e6-880c-04a370d2c0fc.gif)
