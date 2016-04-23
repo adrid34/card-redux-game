@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
-import { Hand, BoardSide } from 'components';
+import { BoardSideDropTarget } from 'containers';
+import { Hand } from 'components';
 
 export class Player extends Component {
   static propTypes = {
@@ -22,8 +23,8 @@ export class Player extends Component {
     const sharedStyles = require('./../shared/styles.scss');
 
     return (
-      <div className={sharedStyles.fullSize}>
-        <BoardSide board={board} playCard={actions.playCard} />
+      <div style={{ width: '100%', height: '50%' }}>
+        <BoardSideDropTarget board={board} playCard={actions.playCard} />
         <div className={styles.Player}>
           <div className={styles.PlayerHandWrapper}>
             <h1 className={styles.PlayerName} onClick={actions.drawCard}>

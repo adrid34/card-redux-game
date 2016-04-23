@@ -14,8 +14,6 @@ export default class BoardSide extends Component {
     const { board, playCard, minionComponent: MinionComponent } = this.props;
     const styles = require('./BoardSide.scss');
 
-    console.log(MinionComponent);
-
     const minions = board.map((card, index) => (
       <MinionComponent
         key={index}
