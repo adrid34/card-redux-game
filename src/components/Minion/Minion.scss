@@ -1,10 +1,32 @@
+@import '../shared/Stats';
+
 .Minion {
   position: relative;
   width: 100px;
   height: 130px;
   background: #ffffff;
-  border: 3px solid #777777;
+  border: 3px solid #616065;
   border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  margin: 0px 5px;
 }
 
+$stats-distance: 2px;
+$stats-padding: 8px 12px;
 
+.MinionAttack {
+  @extend %stats;
+  padding: $stats-padding;
+  background: orange;
+  bottom: -$stats-distance;
+  left: -$stats-distance;
+}
+
+.MinionDefense {
+  @extend %stats;
+  padding: $stats-padding;
+  background: #bc3328;
+  bottom: -$stats-distance;
+  right: -$stats-distance;
+}

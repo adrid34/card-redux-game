@@ -10,18 +10,21 @@ export default class Card extends Component {
 
   render() {
     const { margin } = this.props;
-    const { name, mana, attack, defense } = this.props.card;
+    const { name, mana, attack, defense, portrait } = this.props.card;
     const styles = require('./Card.scss');
-    const statStyles = require('components/shared/Stats.scss');
     const marginStyle = `-${margin}px`;
     const rootClass = `${styles.Card} ${styles.CardYours}`;
 
     return (
       <div className={rootClass} style={{ margin: `auto ${marginStyle}` }}>
-        <div className={statStyles.CardMana}>{ mana || 0 }</div>
+        <div
+          className={styles.CardPortrait}
+          style={{ backgroundImage: `url(${portrait})` }}
+        />
+        <div className={styles.CardMana}>{ mana || 0 }</div>
         <h1 className={styles.CardName}>{ name }</h1>
-        { attack ? <div className={statStyles.AttackStat}>{ attack }</div> : null }
-        { defense ? <div className={statStyles.DefenseStat}>{ defense }</div> : null }
+        { attack ? <div className={styles.CardAttack}>{ attack }</div> : null }
+        { defense ? <div className={styles.CardDefense}>{ defense }</div> : null }
       </div>
     );
   }

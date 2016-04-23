@@ -1,16 +1,16 @@
 import createReducer from 'redux/utils/createReducer';
+import newCardByName, { newRandomCard } from 'redux/utils/cards';
 import { List } from 'immutable';
 import { DRAW_CARD } from './deck';
-import { CardModel } from './card';
 
 const MAX_CARDS = 10;
 export const PLAY_CARD = 'PLAY_CARD';
 
 const initialState = new List([
-  new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 }),
-  new CardModel({ id: 2, name: 'Abusive Sergeant', mana: 1, attack: 2, defense: 1 }),
-  new CardModel({ id: 3, name: 'Acolyte of Pain', mana: 3 }),
-  new CardModel({ id: 4, name: 'Azure Drake', mana: 5, attack: 4, defense: 4 }),
+  newCardByName('Anima Golem'),
+  newCardByName('Abusive Sergeant'),
+  newCardByName('Acolyte of Pain'),
+  newCardByName('Azure Drake'),
 ]);
 
 export function playCard({ card, handIndex, boardIndex = 0 }) {
@@ -24,9 +24,7 @@ export function playCard({ card, handIndex, boardIndex = 0 }) {
 
 function drawCardHandler(state) {
   if (state.size + 1 > MAX_CARDS) return state;
-
-  const newCard = new CardModel({ id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 });
-  return state.push(newCard);
+  return state.push(newRandomCard());
 }
 
 function playCardHandler(state, action) {
