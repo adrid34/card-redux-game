@@ -1,0 +1,31 @@
+$stats-distance: 10px;
+
+%stats {
+  display: inline-block;
+  position: absolute;
+  padding: 12px 16px;
+  border-radius: 100%;
+  color: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.CardMana {
+  @extend %stats;
+  background: blue;
+  top: -$stats-distance;
+  left: -$stats-distance;
+}
+
+.AttackStat {
+  @extend %stats;
+  background: orange;
+  bottom: -$stats-distance;
+  left: -$stats-distance;
+}
+
+.DefenseStat {
+  @extend %stats;
+  background: red;
+  bottom: -$stats-distance;
+  right: -$stats-distance;
+}

@@ -7,14 +7,14 @@ export default class Minion extends Component {
   }
 
   render() {
-    const { mana, attack, defense } = this.props.card;
+    const { attack, defense } = this.props.card;
     const styles = require('./Minion.scss');
+    const statStyles = require('components/shared/Stats.scss');
 
     return (
       <div className={styles.Minion}>
-        <p>Mana: { mana }</p>
-        <p>Attack: { attack || 0 }</p>
-        <p>Defense: { defense || 0 }</p>
+        <div className={statStyles.AttackStat}>{ attack || 0 }</div>
+        <div className={statStyles.DefenseStat}>{ defense || 0 }</div>
       </div>
     );
   }

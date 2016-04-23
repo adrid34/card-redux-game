@@ -1,5 +1,3 @@
-$stats-distance: 10px;
-
 .Card {
   transition: transform 0.2s;
   position: relative;
@@ -17,7 +15,7 @@ $stats-distance: 10px;
   transform: translateY(25%);
 
   &:hover {
-    transform: translateY(-($stats-distance + 5px));
+    transform: translateY(-(10px + 5px));
     z-index: 1;
   }
 }
@@ -30,34 +28,4 @@ $stats-distance: 10px;
   text-align: center;
   padding-top: 40px;
   font-size: 20px;
-}
-
-%stats {
-  display: inline-block;
-  position: absolute;
-  padding: 12px 16px;
-  border-radius: 100%;
-  color: #ffffff;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-}
-
-.CardMana {
-  @extend %stats;
-  background: blue;
-  top: -$stats-distance;
-  left: -$stats-distance;
-}
-
-.CardAttack {
-  @extend %stats;
-  background: orange;
-  bottom: -$stats-distance;
-  left: -$stats-distance;
-}
-
-.CardDefense {
-  @extend %stats;
-  background: red;
-  bottom: -$stats-distance;
-  right: -$stats-distance;
 }
