@@ -15,9 +15,6 @@ export class BoardSideDropTarget extends Component {
   render() {
     const { board, connectDropTarget, playCard } = this.props;
 
-    console.log(board);
-    console.log('MinionDropTarget', MinionDropTarget);
-
     return connectDropTarget(
       <div style={{ height: '30%' }}>
         <BoardSide board={board} playCard={playCard} minionComponent={MinionDropTarget} />
