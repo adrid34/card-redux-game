@@ -25,6 +25,18 @@ const cards = [
     attack: 4,
     defense: 4,
     portrait: 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/thumb/6/64/Azure_Drake_full.jpg/782px-Azure_Drake_full.jpg?version=6104b0c3caf640057fb10ca860778635',
+  }, {
+    name: 'Rare Parrot',
+    mana: 10,
+    attack: 0,
+    defense: 10,
+    portrait: 'http://i.imgur.com/PYe4A3T.gif',
+  }, {
+    name: 'James Kappa',
+    mana: 3,
+    attack: 16,
+    defense: 5,
+    portrait: 'http://media.steampowered.com/steamcommunity/public/images/avatars/0c/0c32e686f6c202e65de64bacb32eaea0c6b517f0_full.jpg',
   },
 ];
 
