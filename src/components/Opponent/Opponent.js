@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { List } from 'immutable';
-import { OpponentHand, BoardSide, Minion } from 'components';
+import { OpponentHand, MinionsOnBoard, BoardSideNew, Minion } from 'components';
 
 export default class Opponent extends Component {
   static propTypes = {
@@ -19,6 +19,10 @@ export default class Opponent extends Component {
     const styles = require('./Opponent.scss');
     const sharedStyles = require('./../shared/styles.scss');
 
+    const minions = board.map((card, index) => (
+      <Minion key={index} card={card} />
+    ));
+
     return (
       <div className={styles.Opponent}>
         <h1 className={styles.OpponentName}>
@@ -27,7 +31,11 @@ export default class Opponent extends Component {
         <div className={styles.OpponentHandWrapper}>
           <OpponentHand handCount={handCount} />
         </div>
-        <BoardSide board={board} playCard={this.opponentPlayCard} minionComponent={Minion} />
+        <BoardSideNew>
+          <MinionsOnBoard>
+            { minions }
+          </MinionsOnBoard>
+        </BoardSideNew>
       </div>
     );
   }

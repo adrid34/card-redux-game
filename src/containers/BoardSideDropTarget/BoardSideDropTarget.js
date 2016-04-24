@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { DropTarget as dropTarget } from 'react-dnd';
 import { List } from 'immutable';
 import { MinionDropTarget } from 'containers';
-import { BoardSide } from 'components';
+import { MinionsOnBoard } from 'components';
 
 export class BoardSideDropTarget extends Component {
   static propTypes = {
@@ -14,10 +14,24 @@ export class BoardSideDropTarget extends Component {
 
   render() {
     const { board, connectDropTarget, playCard } = this.props;
+    const sharedStyles = require('components/shared/styles.scss');
+
+    const minions = board.map((card, index) => (
+      <MinionDropTarget
+        key={index}
+        index={index}
+        card={card}
+        boardSize={board.size}
+        playCard={playCard}
+      />
+    ));
+
 
     return connectDropTarget(
-      <div style={{ height: '30%' }}>
-        <BoardSide board={board} playCard={playCard} minionComponent={MinionDropTarget} />
+      <div className={sharedStyles.fullSize}>
+        <MinionsOnBoard>
+          { minions }
+        </MinionsOnBoard>
       </div>
     );
   }

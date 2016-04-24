@@ -25,7 +25,7 @@ export default class BoardSide extends Component {
     ));
 
     return (
-      <div className={styles.BoardSide}>
+      <div>
         { minions }
       </div>
     );

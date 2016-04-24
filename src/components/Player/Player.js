@@ -3,7 +3,7 @@ import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
 import { BoardSideDropTarget } from 'containers';
-import { Hand } from 'components';
+import { Hand, BoardSideNew } from 'components';
 
 export class Player extends Component {
   static propTypes = {
@@ -23,7 +23,9 @@ export class Player extends Component {
 
     return (
       <div className={styles.Player}>
-        <BoardSideDropTarget board={board} playCard={actions.playCard} />
+        <BoardSideNew>
+          <BoardSideDropTarget board={board} playCard={actions.playCard} />
+        </BoardSideNew>
         <h1 className={styles.PlayerName} onClick={actions.drawCard}>
           { name || 'Unnamed' }
         </h1>
