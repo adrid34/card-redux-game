@@ -20,18 +20,15 @@ export class Player extends Component {
   render() {
     const { name, hand, board, actions } = this.props;
     const styles = require('./Player.scss');
-    const sharedStyles = require('./../shared/styles.scss');
 
     return (
-      <div style={{ width: '100%', height: '50%' }}>
+      <div className={styles.Player}>
         <BoardSideDropTarget board={board} playCard={actions.playCard} />
-        <div className={styles.Player}>
-          <div className={styles.PlayerHandWrapper}>
-            <h1 className={styles.PlayerName} onClick={actions.drawCard}>
-              { name || 'Unnamed' }
-            </h1>
-            <Hand cards={hand} />
-          </div>
+        <h1 className={styles.PlayerName} onClick={actions.drawCard}>
+          { name || 'Unnamed' }
+        </h1>
+        <div className={styles.PlayerHandWrapper}>
+          <Hand cards={hand} />
         </div>
       </div>
     );

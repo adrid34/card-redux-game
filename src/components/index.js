@@ -6,3 +6,4 @@ export Minion from './Minion/Minion';
 export Opponent from './Opponent/Opponent';
 export OpponentHand from './OpponentHand/OpponentHand';
 export Player from './Player/Player';
+export PlayerSide from './PlayerSide/PlayerSide';
