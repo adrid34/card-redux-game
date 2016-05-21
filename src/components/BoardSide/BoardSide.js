@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
-import { DropTarget as dropTarget } from 'react-dnd';
 import { List } from 'immutable';
 
 export default class BoardSide extends Component {
@@ -12,7 +10,6 @@ export default class BoardSide extends Component {
 
   render() {
     const { board, playCard, minionComponent: MinionComponent } = this.props;
-    const styles = require('./BoardSide.scss');
 
     const minions = board.map((card, index) => (
       <MinionComponent

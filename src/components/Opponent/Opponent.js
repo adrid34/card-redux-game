@@ -17,7 +17,6 @@ export default class Opponent extends Component {
   render() {
     const { name, handCount, board } = this.props;
     const styles = require('./Opponent.scss');
-    const sharedStyles = require('./../shared/styles.scss');
 
     const minions = board.map((card, index) => (
       <Minion key={index} card={card} />
