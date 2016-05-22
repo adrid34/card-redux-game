@@ -1,22 +1,27 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import { CardModel } from 'redux/modules/card';
 
 export default class Card extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
-    margin: PropTypes.number.isRequired,
+    cardsLength: PropTypes.number.isRequired,
   }
 
   render() {
-    const { margin } = this.props;
+    const { index, cardsLength } = this.props;
     const { name, mana, attack, defense, portrait } = this.props.card;
     const styles = require('./Card.scss');
-    const marginStyle = `-${margin}px`;
-    const rootClass = `${styles.Card} ${styles.CardYours}`;
+    const cardClass = classNames(
+      styles.Card,
+      styles.CardYours,
+      styles[`CardTotal-${cardsLength}`],
+      styles[`CardNumber-${index + 1}-of-${cardsLength}`],
+    );
 
     return (
-      <div className={rootClass} style={{ margin: `auto ${marginStyle}` }}>
+      <div className={cardClass}>
         <div
           className={styles.CardPortrait}
           style={{ backgroundImage: `url(${portrait})` }}

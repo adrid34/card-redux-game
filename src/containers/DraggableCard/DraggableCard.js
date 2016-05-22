@@ -8,15 +8,15 @@ export class DraggableCard extends Component {
     connectDragSource: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
-    margin: PropTypes.number.isRequired,
+    cardsLength: PropTypes.number.isRequired,
   }
 
   render() {
-    const { connectDragSource, card, index, margin } = this.props;
+    const { connectDragSource, card, index, cardsLength } = this.props;
 
     return connectDragSource(
       <div>
-        <Card card={card} index={index} margin={margin} />
+        <Card card={card} index={index} cardsLength={cardsLength} />
       </div>
     );
   }

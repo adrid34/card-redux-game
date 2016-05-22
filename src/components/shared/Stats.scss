@@ -3,7 +3,8 @@ $stat-attack-color: orange;
 $stat-defense-color: #bc3328;
 
 %stats {
-  display: inline-block;
+  // display: inline-block;
+  display: none;
   position: absolute;
   border-radius: 100%;
   color: #ffffff;
