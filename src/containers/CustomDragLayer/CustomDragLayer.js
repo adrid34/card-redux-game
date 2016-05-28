@@ -23,10 +23,7 @@ function getItemStyles(props) {
   console.log('X:', currentOffset.x, 'Y:', currentOffset.y);
 
   const { x, y } = currentOffset;
-  // const calcX = x - 100;
-  // const calcY = y - 50;
-  // const transform = `translate(${x}px, ${y}px)`;
-  return {};
+  const transform = `translate(${x}px, ${y}px)`;
   return {
     transform,
     WebkitTransform: transform,
@@ -53,7 +50,7 @@ class CustomDragLayer extends Component {
     return (
       <div style={layerStyles}>
         <div style={getItemStyles(this.props)}>
-          <Card card={item.card} />
+          <Card card={item.card} isDragging />
         </div>
       </div>
     );

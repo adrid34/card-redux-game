@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { DragSource as dragSource } from 'react-dnd';
 import { CardModel } from 'redux/modules/card';
@@ -10,7 +11,8 @@ export class DraggableCard extends Component {
     connectDragPreview: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
-    cardsLength: PropTypes.number.isRequired,
+    className: PropTypes.string,
+    hoverable: PropTypes.bool,
     isDragging: PropTypes.bool.isRequired,
   }
 
@@ -20,11 +22,11 @@ export class DraggableCard extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, card, index, cardsLength } = this.props;
+    const { connectDragSource, isDragging, card, className } = this.props;
 
     return connectDragSource(
       <div style={{ display: isDragging ? 'none' : undefined }}>
-        <Card card={card} index={index} cardsLength={cardsLength} />
+        <Card card={card} className={className} />
       </div>
     );
   }
