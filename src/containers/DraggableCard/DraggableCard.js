@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import classNames from 'classnames';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { DragSource as dragSource } from 'react-dnd';
 import { CardModel } from 'redux/modules/card';
