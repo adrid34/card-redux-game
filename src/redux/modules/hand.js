@@ -13,11 +13,12 @@ const initialState = new List([
   newCardByName('Azure Drake'),
 ]);
 
-export function playCard({ card, handIndex, boardIndex = 0 }) {
+export function playCard({ card, handIndex, boardIndex, source }) {
   return {
     card,
     handIndex,
     boardIndex,
+    source,
     type: PLAY_CARD,
   };
 }
