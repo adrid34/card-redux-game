@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DropTarget as dropTarget } from 'react-dnd';
 import { CardModel } from 'redux/modules/card';
-import { Minion } from 'components';
+import { DraggableMinion } from 'containers';
+// import { Minion } from 'components';
 
 export class MinionDropTarget extends Component {
   static propTypes = {
@@ -19,7 +20,7 @@ export class MinionDropTarget extends Component {
 
     return connectDropTarget(
       <div className={sharedStyles.fullHeight}>
-        <Minion card={card} />
+        <DraggableMinion card={card} />
       </div>
     );
   }
