@@ -15,9 +15,10 @@ export class MinionDropTarget extends Component {
 
   render() {
     const { connectDropTarget, card } = this.props;
+    const sharedStyles = require('components/shared/styles.scss');
 
     return connectDropTarget(
-      <div>
+      <div className={sharedStyles.fullHeight}>
         <Minion card={card} />
       </div>
     );

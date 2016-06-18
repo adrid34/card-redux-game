@@ -1,26 +1,27 @@
 @import '../shared/Stats';
 
 .Card {
-  transition: transform 0.2s;
+  background: #776557;
+  transition: transform 0.15s;
   position: relative;
-  width: 200px;
-  height: 285px;
+  width: 35vh;
+  height: 47vh;
   box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
   border-radius: 8px;
 }
 
 .CardYours {
-  background: #776557;
-  transform: translateY(25%);
+  transform: scale(0.4) translateY(25%);
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-(10px + 5px));
+    transform: translateY(-35%);
     z-index: 1;
   }
 }
 
 .CardOpponent {
+  background: transparent;
   transform: scale(0.60) translateY(-60%);
 }
 
@@ -30,7 +31,7 @@
   top: 50%;
   background: #D4B48F;
   text-align: center;
-  font-size: 20px;
+  font-size: 3vh;
   color: #ffffff;
   padding: 10px;
   box-sizing: border-box;
@@ -74,4 +75,37 @@ $stats-padding: 12px 16px;
   background: $stat-defense-color;
   bottom: -$stats-distance;
   right: -$stats-distance;
+}
+
+@function fix-card-alignment($this-card, $total-cards) {
+  $half: $total-cards / 2;
+  $percentage: 0;
+
+  @if $this-card < $half { $percentage: -7% * $this-card; }
+  @else { $percentage: -7% * (($total-cards - 1) - $this-card) }
+
+  @return -30% + $percentage;
+}
+
+@function curve($this-card, $total-cards, $range) {
+  $base: -$range / 2;
+  $modifier: if(($total-cards - 1) == 0, 0, $this-card / ($total-cards - 1));
+
+  @return $base + ($range * $modifier);
+}
+
+@for $max from 1 through 10 {
+  $range: 50deg * ($max / 10);
+  .CardTotal-#{$max} {
+    margin: 0 -13vh;
+  }
+
+  @if $max != 1 {
+    @for $i from 0 through $max {
+      .CardNumber-#{$i + 1}-of-#{$max} {
+        transform: scale(0.4) rotate(curve($i, $max, $range)) translateY(fix-card-alignment($i, $max));
+        transform-origin: center bottom;
+      }
+    }
+  }
 }

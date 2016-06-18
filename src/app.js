@@ -6,6 +6,7 @@ import configureStore from 'redux/configureStore';
 import { newGame } from 'redux/modules/game';
 import { DevTools, Board } from './containers';
 import './styles/app.scss';
+import sharedStyles from 'components/shared/styles.scss';
 
 if (module.hot) {
   module.hot.accept();
@@ -22,7 +23,7 @@ class App extends Component {
 
 ReactDOM.render(
   <Provider store={store}>
-    <div style={{ width: '100%', height: '100%' }}>
+    <div className={sharedStyles.fullSize}>
       <App />
       <DevTools />
     </div>
