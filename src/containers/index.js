@@ -4,3 +4,4 @@ export BoardSideDropTarget from './BoardSideDropTarget/BoardSideDropTarget';
 export CustomDragLayer from './CustomDragLayer/CustomDragLayer';
 export DraggableCard from './DraggableCard/DraggableCard';
 export MinionDropTarget from './MinionDropTarget/MinionDropTarget';
+export TargetableHero from './TargetableHero/TargetableHero';
