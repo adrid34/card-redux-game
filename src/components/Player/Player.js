@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
-import { BoardSideDropTarget, CustomDragLayer } from 'containers';
+import { TargetableHero, BoardSideDropTarget, CustomDragLayer } from 'containers';
 import { Hand, BoardSide } from 'components';
 
 export class Player extends Component {
@@ -18,6 +18,7 @@ export class Player extends Component {
     actions: PropTypes.shape({
       playCard: PropTypes.func.isRequired,
       drawCard: PropTypes.func.isRequired,
+      hitFace: PropTypes.func.isRequired,
     }).isRequired,
   }
 
@@ -34,6 +35,7 @@ export class Player extends Component {
         </BoardSide>
         <h1 className={styles.PlayerName} onClick={actions.drawCard}>
           { name || 'Unnamed' } - Mana: { mana } and Health: { health }
+          <TargetableHero health={health} hitFace={actions.hitFace} />
         </h1>
         <div className={styles.PlayerHandWrapper}>
           <Hand cards={hand} />

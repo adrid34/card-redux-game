@@ -1,5 +1,6 @@
 export BoardSide from './BoardSide/BoardSide';
 export Hand from './Hand/Hand';
+export Hero from './Hero/Hero';
 export Card from './Card/Card';
 export CardBack from './CardBack/CardBack';
 export Minion from './Minion/Minion';

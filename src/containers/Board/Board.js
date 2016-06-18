@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { drawCard } from 'redux/modules/deck';
 import { playCard } from 'redux/modules/hand';
+import { hitFace } from 'redux/modules/minion';
 import { Player, PlayerSide, Opponent } from 'components';
-
 
 export const Board = ({ player, opponent, playerActions }) => {
   const styles = require('./Board.scss');
@@ -37,7 +37,7 @@ Board.propTypes = {
 
 const mapStateToProps = ({ player, opponent }) => ({ player, opponent });
 const mapDispatchToProps = (dispatch) => ({
-  playerActions: bindActionCreators({ playCard, drawCard }, dispatch),
+  playerActions: bindActionCreators({ playCard, drawCard, hitFace }, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
