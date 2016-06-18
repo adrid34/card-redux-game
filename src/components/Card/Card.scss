@@ -1,6 +1,7 @@
 @import '../shared/Stats';
 
 .Card {
+  background: #776557;
   transition: transform 0.15s;
   position: relative;
   width: 35vh;
@@ -10,17 +11,17 @@
 }
 
 .CardYours {
-  background: #776557;
   transform: scale(0.4) translateY(25%);
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-25%);
+    transform: translateY(-35%);
     z-index: 1;
   }
 }
 
 .CardOpponent {
+  background: transparent;
   transform: scale(0.60) translateY(-60%);
 }
 

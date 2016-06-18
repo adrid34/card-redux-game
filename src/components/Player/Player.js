@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
-import { BoardSideDropTarget } from 'containers';
+import { BoardSideDropTarget, CustomDragLayer } from 'containers';
 import { Hand, BoardSideNew } from 'components';
 
 export class Player extends Component {
@@ -23,6 +23,7 @@ export class Player extends Component {
 
     return (
       <div className={styles.Player}>
+        <CustomDragLayer />
         <BoardSideNew>
           <BoardSideDropTarget board={board} playCard={actions.playCard} />
         </BoardSideNew>

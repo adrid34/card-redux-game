@@ -4,21 +4,19 @@ import { CardModel } from 'redux/modules/card';
 
 export default class Card extends Component {
   static propTypes = {
-    index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
-    cardsLength: PropTypes.number.isRequired,
+    isDragging: PropTypes.bool,
+    className: PropTypes.string,
   }
 
   render() {
-    const { index, cardsLength } = this.props;
+    const { className, isDragging } = this.props;
     const { name, mana, attack, defense, portrait } = this.props.card;
     const styles = require('./Card.scss');
-    const cardClass = classNames(
-      styles.Card,
-      styles.CardYours,
-      styles[`CardTotal-${cardsLength}`],
-      styles[`CardNumber-${index + 1}-of-${cardsLength}`],
-    );
+    const cardClass = classNames(styles.Card, {
+      [styles.CardIsDragging]: isDragging,
+      [className]: className,
+    });
 
     return (
       <div className={cardClass}>
