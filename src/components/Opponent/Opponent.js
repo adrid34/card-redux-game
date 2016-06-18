@@ -10,10 +10,6 @@ export default class Opponent extends Component {
     board: PropTypes.instanceOf(List),
   }
 
-  opponentPlayCard(e) {
-    console.log('The opponent played a card', e);
-  }
-
   render() {
     const { name, handCount, board } = this.props;
     const styles = require('./Opponent.scss');
