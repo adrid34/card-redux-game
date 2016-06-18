@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { DragLayer as dragLayer } from 'react-dnd';
-import { Card } from 'components';
+import { Minion, Card } from 'components';
 
 const layerStyles = {
   position: 'fixed',
@@ -41,14 +41,21 @@ class CustomDragLayer extends Component {
   render() {
     const { item, itemType, isDragging } = this.props;
 
-    if (!isDragging || itemType !== 'CARD') {
+    if (!isDragging) {
       return null;
     }
 
     return (
       <div style={layerStyles}>
         <div style={getItemStyles(this.props)}>
-          <Card card={item.card} isDragging />
+          { itemType === 'CARD' ?
+            <Card card={item.card} isDragging />
+          : null }
+          { itemType === 'MINION' ?
+            <div style={{ width: '76.19px', height: '80.63px' }}>
+              <Minion card={item.card} isDragging />
+            </div>
+          : null }
         </div>
       </div>
     );

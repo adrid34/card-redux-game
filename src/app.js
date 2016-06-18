@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 
 import configureStore from 'redux/configureStore';
 import { newGame } from 'redux/modules/game';
+import { playCard } from 'redux/modules/hand';
+import { newRandomCard } from 'redux/utils/cards';
 import { DevTools, Board } from './containers';
 import './styles/app.scss';
 import sharedStyles from 'components/shared/styles.scss';
@@ -14,6 +16,18 @@ if (module.hot) {
 
 const store = configureStore();
 store.dispatch(newGame({ yourName: 'Inooid', opponentName: 'OpponentName' }));
+store.dispatch(
+  playCard({
+    card: newRandomCard(),
+    source: 'OPPONENT',
+  })
+);
+store.dispatch(
+  playCard({
+    card: newRandomCard(),
+    source: 'OPPONENT',
+  })
+);
 
 const App = () => (
   <Board />
