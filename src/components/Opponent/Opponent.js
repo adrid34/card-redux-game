@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { List } from 'immutable';
 import { OpponentHand, MinionsOnBoard, BoardSide, Minion } from 'components';
 
-const Opponent = ({ name, handCount, board }) => {
+const Opponent = ({ name, character, handCount, board }) => {
+  const { mana, health } = character;
   const styles = require('./Opponent.scss');
 
   const minions = board.map((card, index) => (
@@ -12,7 +13,7 @@ const Opponent = ({ name, handCount, board }) => {
   return (
     <div className={styles.Opponent}>
       <h1 className={styles.OpponentName}>
-        { name || 'Unnamed' }
+        { name || 'Unnamed' } - Mana: { mana } and Health: { health }
       </h1>
       <div className={styles.OpponentHandWrapper}>
         <OpponentHand handCount={handCount} />
@@ -28,6 +29,10 @@ const Opponent = ({ name, handCount, board }) => {
 
 Opponent.propTypes = {
   name: PropTypes.string,
+  character: PropTypes.shape({
+    health: PropTypes.number.isRequired,
+    mana: PropTypes.number.isRequired,
+  }),
   handCount: PropTypes.number,
   deckCount: PropTypes.number,
   board: PropTypes.instanceOf(List),

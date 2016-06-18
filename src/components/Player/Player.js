@@ -8,6 +8,10 @@ import { Hand, BoardSide } from 'components';
 export class Player extends Component {
   static propTypes = {
     name: PropTypes.string,
+    character: PropTypes.shape({
+      health: PropTypes.number.isRequired,
+      mana: PropTypes.number.isRequired,
+    }),
     hand: PropTypes.instanceOf(List),
     deck: PropTypes.array,
     board: PropTypes.instanceOf(List),
@@ -19,6 +23,7 @@ export class Player extends Component {
 
   render() {
     const { name, hand, board, actions } = this.props;
+    const { mana, health } = this.props.character;
     const styles = require('./Player.scss');
 
     return (
@@ -28,7 +33,7 @@ export class Player extends Component {
           <BoardSideDropTarget board={board} playCard={actions.playCard} />
         </BoardSide>
         <h1 className={styles.PlayerName} onClick={actions.drawCard}>
-          { name || 'Unnamed' }
+          { name || 'Unnamed' } - Mana: { mana } and Health: { health }
         </h1>
         <div className={styles.PlayerHandWrapper}>
           <Hand cards={hand} />
