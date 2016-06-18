@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { drawCard } from 'redux/modules/deck';
 import { playCard } from 'redux/modules/hand';
-import { Player, Opponent } from 'components';
+import { Player, PlayerSide, Opponent } from 'components';
 
 export class Board extends Component {
   static propTypes = {
@@ -26,8 +26,12 @@ export class Board extends Component {
 
     return (
       <div className={styles.Board}>
-        <Opponent {...opponent} />
-        <Player {...player} actions={playerActions} />
+        <PlayerSide>
+          <Opponent {...opponent} />
+        </PlayerSide>
+        <PlayerSide>
+          <Player {...player} actions={playerActions} />
+        </PlayerSide>
       </div>
     );
   }

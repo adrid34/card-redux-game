@@ -8,6 +8,7 @@ export class CardModel extends record({
   mana: null,
   attack: null,
   defense: null,
+  portrait: null,
 }) {
   constructor(obj) {
     super(obj);

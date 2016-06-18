@@ -1,4 +1,5 @@
 import { NEW_GAME } from './game';
+import boardReducer from './board';
 
 function nameReducer(state = '', action) {
   return action.type === NEW_GAME ? action.opponentName : state;
@@ -17,5 +18,6 @@ export default function opponentReducer(state = {}, action) {
     name: nameReducer(state.name, action),
     handCount: handCountReducer(state.handCount, action),
     deckCount: deckCountReducer(state.deckCount, action),
+    board: boardReducer(state.board, action),
   };
 }

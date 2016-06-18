@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import { CardModel } from 'redux/modules/card';
 
 export default class Minion extends Component {
@@ -7,14 +8,17 @@ export default class Minion extends Component {
   }
 
   render() {
-    const { mana, attack, defense } = this.props.card;
+    const { attack, defense, portrait } = this.props.card;
     const styles = require('./Minion.scss');
 
     return (
-      <div className={styles.Minion}>
-        <p>Mana: { mana }</p>
-        <p>Attack: { attack || 0 }</p>
-        <p>Defense: { defense || 0 }</p>
+      <div className={styles.Minion} style={{ backgroundImage: `url(${portrait})` }}>
+        <div className={classNames(styles.MinionStat, styles.MinionAttack)}>
+          { attack || 0 }
+        </div>
+        <div className={classNames(styles.MinionStat, styles.MinionDefense)}>
+          { defense || 0 }
+        </div>
       </div>
     );
   }

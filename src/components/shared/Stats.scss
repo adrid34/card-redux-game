@@ -1,0 +1,11 @@
+$stat-mana-color: #4681ee;
+$stat-attack-color: orange;
+$stat-defense-color: #bc3328;
+
+%stats {
+  display: inline-block;
+  position: absolute;
+  border-radius: 100%;
+  color: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
