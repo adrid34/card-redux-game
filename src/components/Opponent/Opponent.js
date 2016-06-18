@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { List } from 'immutable';
-import { OpponentHand, MinionsOnBoard, BoardSideNew, Minion } from 'components';
+import { OpponentHand, MinionsOnBoard, BoardSide, Minion } from 'components';
 
 export default class Opponent extends Component {
   static propTypes = {
@@ -26,11 +26,11 @@ export default class Opponent extends Component {
         <div className={styles.OpponentHandWrapper}>
           <OpponentHand handCount={handCount} />
         </div>
-        <BoardSideNew>
+        <BoardSide>
           <MinionsOnBoard>
             { minions }
           </MinionsOnBoard>
-        </BoardSideNew>
+        </BoardSide>
       </div>
     );
   }

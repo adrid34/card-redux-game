@@ -1,5 +1,4 @@
 export BoardSide from './BoardSide/BoardSide';
-export BoardSideNew from './BoardSideNew/BoardSideNew';
 export Hand from './Hand/Hand';
 export Card from './Card/Card';
 export CardBack from './CardBack/CardBack';
