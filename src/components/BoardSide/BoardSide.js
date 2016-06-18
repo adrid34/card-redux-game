@@ -1,30 +1,17 @@
-import React, { Component, PropTypes } from 'react';
-import { List } from 'immutable';
+import React, { PropTypes } from 'react';
 
-export default class BoardSide extends Component {
-  static propTypes = {
-    board: PropTypes.instanceOf(List),
-    playCard: PropTypes.func.isRequired,
-    minionComponent: PropTypes.element.isRequired,
-  }
+const BoardSide = ({ children }) => {
+  const styles = require('./BoardSide.scss');
 
-  render() {
-    const { board, playCard, minionComponent: MinionComponent } = this.props;
+  return (
+    <div className={styles.BoardSide}>
+      { children }
+    </div>
+  );
+};
 
-    const minions = board.map((card, index) => (
-      <MinionComponent
-        key={index}
-        index={index}
-        card={card}
-        boardSize={board.size}
-        playCard={playCard}
-      />
-    ));
+BoardSide.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-    return (
-      <div>
-        { minions }
-      </div>
-    );
-  }
-}
+export default BoardSide;

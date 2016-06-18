@@ -1,17 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-export default class MinionsOnBoard extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  }
+const MinionsOnBoard = ({ children }) => {
+  const styles = require('./MinionsOnBoard.scss');
 
-  render() {
-    const styles = require('./MinionsOnBoard.scss');
+  return (
+    <div className={styles.MinionsOnBoard}>
+      { children }
+    </div>
+  );
+};
 
-    return (
-      <div className={styles.MinionsOnBoard}>
-        { this.props.children }
-      </div>
-    );
-  }
-}
+MinionsOnBoard.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default MinionsOnBoard;

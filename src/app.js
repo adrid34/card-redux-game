@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 
@@ -15,11 +15,9 @@ if (module.hot) {
 const store = configureStore();
 store.dispatch(newGame({ yourName: 'Inooid', opponentName: 'OpponentName' }));
 
-class App extends Component {
-  render() {
-    return <Board />;
-  }
-}
+const App = () => (
+  <Board />
+);
 
 ReactDOM.render(
   <Provider store={store}>

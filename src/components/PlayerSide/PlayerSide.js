@@ -1,17 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-export default class PlayerSide extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired,
-  }
+const PlayerSide = ({ children }) => {
+  const styles = require('./PlayerSide.scss');
 
-  render() {
-    const styles = require('./PlayerSide.scss');
+  return (
+    <div className={styles.PlayerSide}>
+      { children }
+    </div>
+  );
+};
 
-    return (
-      <div className={styles.PlayerSide}>
-        { this.props.children }
-      </div>
-    );
-  }
-}
+PlayerSide.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default PlayerSide;

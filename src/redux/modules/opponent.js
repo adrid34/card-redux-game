@@ -18,6 +18,6 @@ export default function opponentReducer(state = {}, action) {
     name: nameReducer(state.name, action),
     handCount: handCountReducer(state.handCount, action),
     deckCount: deckCountReducer(state.deckCount, action),
-    board: boardReducer(state.board, action),
+    board: boardReducer(state.board, action, 'OPPONENT'),
   };
 }

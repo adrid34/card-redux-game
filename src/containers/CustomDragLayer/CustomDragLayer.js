@@ -20,8 +20,6 @@ function getItemStyles(props) {
     };
   }
 
-  console.log('X:', currentOffset.x, 'Y:', currentOffset.y);
-
   const { x, y } = currentOffset;
   const transform = `translate(${x}px, ${y}px)`;
   return {
