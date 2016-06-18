@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { CardBack } from 'components';
 
 function arrayByNumber(num) {
@@ -10,25 +10,24 @@ function arrayByNumber(num) {
   return array;
 }
 
-export default class OpponentHand extends Component {
-  static propTypes = {
-    handCount: PropTypes.number.isRequired,
-  }
+const OpponentHand = ({ handCount }) => {
+  const styles = require('./../Hand/Hand.scss');
+  const cardStyles = require('./../Card/Card.scss');
+  const margin = handCount * 25;
 
-  render() {
-    const { handCount } = this.props;
-    const styles = require('./../Hand/Hand.scss');
-    const cardStyles = require('./../Card/Card.scss');
-    const margin = handCount * 25;
+  const cardList = arrayByNumber(handCount).map((_, index) => (
+    <CardBack key={index} margin={margin} className={cardStyles.CardOpponent} />
+  ));
 
-    const cardList = arrayByNumber(handCount).map((_, index) => (
-      <CardBack key={index} margin={margin} className={cardStyles.CardOpponent} />
-    ));
+  return (
+    <div className={styles.Hand}>
+      { cardList }
+    </div>
+  );
+};
 
-    return (
-      <div className={styles.Hand}>
-        { cardList }
-      </div>
-    );
-  }
-}
+OpponentHand.propTypes = {
+  handCount: PropTypes.number.isRequired,
+};
+
+export default OpponentHand;
