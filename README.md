@@ -36,4 +36,4 @@ Current progress:
 -----------------
 
 Updated: 18 June 2016
-![Current progress](https://cloud.githubusercontent.com/assets/1291263/16171213/9fd57fe8-3569-11e6-973f-42befb88a12f.png)
+![Current progress](https://cloud.githubusercontent.com/assets/1291263/16197296/d4d816ee-3701-11e6-9142-8a20ffa2d5f3.png)
