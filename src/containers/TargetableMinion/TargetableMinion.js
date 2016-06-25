@@ -29,7 +29,7 @@ const minionTarget = {
 
     props.hitMinion({
       target: 'OPPONENT',
-      boardIndex: props.index,
+      targetMinionId: props.card.id,
       damage: sourceMinion.attack,
     });
   },
