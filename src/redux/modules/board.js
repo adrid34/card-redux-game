@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import { List } from 'immutable';
 import { PLAY_CARD } from './hand';
 
@@ -12,3 +13,9 @@ export default function boardReducer(state = initialState, action) {
       return state;
   }
 }
+
+const getBoard = (state, props) => state[props].board;
+const getMinions = (state) => state.entities.minions;
+export const boardSelector = createSelector([getBoard, getMinions], (board, minions) => (
+  board.map(minionId => minions.get(minionId))
+));

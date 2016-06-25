@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+import { boardSelector } from 'redux/modules/board';
 import { drawCard } from 'redux/modules/deck';
 import { playCard } from 'redux/modules/hand';
 import { hitFace, hitMinion } from 'redux/modules/minion';
@@ -39,7 +40,10 @@ Board.propTypes = {
   }),
 };
 
-const mapStateToProps = ({ player, opponent }) => ({ player, opponent });
+const mapStateToProps = (state) => ({
+  player: Object.assign({}, state.player, { board: boardSelector(state, 'player') }),
+  opponent: Object.assign({}, state.opponent, { board: boardSelector(state, 'opponent') }),
+});
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ playCard, drawCard, hitFace, hitMinion }, dispatch),
 });
