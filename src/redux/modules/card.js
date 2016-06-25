@@ -1,9 +1,7 @@
+import uuid from 'uuid';
 import { Record as record } from 'immutable';
 
-let cardModelCount = 0;
-
 export class CardModel extends record({
-  id: null,
   name: '',
   mana: null,
   attack: null,
@@ -12,6 +10,6 @@ export class CardModel extends record({
 }) {
   constructor(obj) {
     super(obj);
-    this.uniqId = cardModelCount++;
+    this.id = uuid.v4();
   }
 }

@@ -14,7 +14,7 @@ const Hand = ({ cards }) => {
       [cardStyles[`CardNumber-${index + 1}-of-${cardsLength}`]]: (typeof index !== undefined),
     });
 
-    return <DraggableCard key={card.uniqId} card={card} index={index} className={cardClasses} />;
+    return <DraggableCard key={card.id} card={card} index={index} className={cardClasses} />;
   });
 
   return (
