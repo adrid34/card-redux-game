@@ -35,6 +35,11 @@ const minionSource = {
       card: props.card,
     };
   },
+
+  canDrag(props) {
+    if (props.card.attack <= 0) return false;
+    return true;
+  },
 };
 
 function collect(connect, monitor) {
