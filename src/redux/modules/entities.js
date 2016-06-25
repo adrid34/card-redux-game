@@ -13,13 +13,11 @@ export default function entities(state = initialState(), action) {
         minions.set(action.card.id, action.card)
       ));
     case HIT_MINION:
-      const newState = state.update('minions', (minions) => (
+      return state.update('minions', (minions) => (
         minions.update(action.targetMinionId, (minion) => (
           minion.update('defense', (defense) => defense - action.damage)
         ))
       ));
-      console.log(newState);
-      return newState;
     default:
       return state;
   }
