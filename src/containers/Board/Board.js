@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { DragDropContext as dragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 import { drawCard } from 'redux/modules/deck';
 import { playCard } from 'redux/modules/hand';
@@ -40,4 +42,6 @@ const mapDispatchToProps = (dispatch) => ({
   playerActions: bindActionCreators({ playCard, drawCard, hitFace }, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Board);
+export default dragDropContext(HTML5Backend)(
+  connect(mapStateToProps, mapDispatchToProps)(Board)
+);
