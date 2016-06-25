@@ -38,6 +38,11 @@ Opponent.propTypes = {
   handCount: PropTypes.number,
   deckCount: PropTypes.number,
   board: PropTypes.instanceOf(List),
+  actions: PropTypes.shape({
+    playCard: PropTypes.func.isRequired,
+    drawCard: PropTypes.func.isRequired,
+    hitFace: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default Opponent;
