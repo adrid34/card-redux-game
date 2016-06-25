@@ -1,16 +1,26 @@
 import { Map, Record } from 'immutable';
 import { PLAY_CARD } from './hand';
+import { HIT_MINION } from './minion';
 
 const initialState = new Record({
   minions: new Map(),
 });
 
 export default function entities(state = initialState(), action) {
-  if (action.type === PLAY_CARD) {
-    return state.update('minions', (minions) => (
-      minions.set(action.card.id, action.card)
-    ));
+  switch (action.type) {
+    case PLAY_CARD:
+      return state.update('minions', (minions) => (
+        minions.set(action.card.id, action.card)
+      ));
+    case HIT_MINION:
+      const newState = state.update('minions', (minions) => (
+        minions.update(action.targetMinionId, (minion) => (
+          minion.update('defense', (defense) => defense - action.damage)
+        ))
+      ));
+      console.log(newState);
+      return newState;
+    default:
+      return state;
   }
-
-  return state;
 }
