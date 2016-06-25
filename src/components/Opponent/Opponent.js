@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
+import { TargetableHero } from 'containers';
 import { OpponentHand, MinionsOnBoard, BoardSide, Minion } from 'components';
 
-const Opponent = ({ name, character, handCount, board }) => {
+const Opponent = ({ name, character, handCount, board, actions }) => {
   const { mana, health } = character;
   const styles = require('./Opponent.scss');
 
@@ -14,6 +15,7 @@ const Opponent = ({ name, character, handCount, board }) => {
     <div className={styles.Opponent}>
       <h1 className={styles.OpponentName}>
         { name || 'Unnamed' } - Mana: { mana } and Health: { health }
+        <TargetableHero ownedBy="OPPONENT" health={health} hitFace={actions.hitFace} />
       </h1>
       <div className={styles.OpponentHandWrapper}>
         <OpponentHand handCount={handCount} />
