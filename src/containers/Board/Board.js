@@ -13,7 +13,7 @@ export const Board = ({ player, opponent, playerActions }) => {
   return (
     <div className={styles.Board}>
       <PlayerSide>
-        <Opponent {...opponent} />
+        <Opponent {...opponent} actions={playerActions} />
       </PlayerSide>
       <PlayerSide>
         <Player {...player} actions={playerActions} />
