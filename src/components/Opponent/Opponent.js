@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
-import { TargetableHero } from 'containers';
-import { OpponentHand, MinionsOnBoard, BoardSide, Minion } from 'components';
+import { TargetableHero, TargetableMinion } from 'containers';
+import { OpponentHand, MinionsOnBoard, BoardSide } from 'components';
 
 const Opponent = ({ name, character, handCount, board, actions }) => {
   const { mana, health } = character;
   const styles = require('./Opponent.scss');
 
   const minions = board.map((card, index) => (
-    <Minion key={index} card={card} />
+    <TargetableMinion key={index} index={index} card={card} hitMinion={actions.hitMinion} />
   ));
 
   return (
@@ -42,6 +42,7 @@ Opponent.propTypes = {
     playCard: PropTypes.func.isRequired,
     drawCard: PropTypes.func.isRequired,
     hitFace: PropTypes.func.isRequired,
+    hitMinion: PropTypes.func.isRequired,
   }).isRequired,
 };
 
