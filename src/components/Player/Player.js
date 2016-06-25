@@ -20,6 +20,15 @@ export class Player extends Component {
     }).isRequired,
   }
 
+  constructor() {
+    super();
+    this.drawCard = this.drawCard.bind(this);
+  }
+
+  drawCard() {
+    this.props.actions.drawCard({ target: 'PLAYER' });
+  }
+
   render() {
     const { name, hand, board, actions } = this.props;
     const { mana, health } = this.props.character;
@@ -31,7 +40,7 @@ export class Player extends Component {
         <BoardSide>
           <BoardSideDropTarget board={board} playCard={actions.playCard} />
         </BoardSide>
-        <h1 className={styles.PlayerName} onClick={actions.drawCard}>
+        <h1 className={styles.PlayerName} onClick={this.drawCard}>
           { name || 'Unnamed' } - Mana: { mana } and Health: { health }
           <TargetableHero health={health} hitFace={actions.hitFace} />
         </h1>
