@@ -42,7 +42,7 @@ export class Player extends Component {
         </BoardSide>
         <h1 className={styles.PlayerName} onClick={this.drawCard}>
           { name || 'Unnamed' } - Mana: { mana } and Health: { health }
-          <TargetableHero health={health} hitFace={actions.hitFace} />
+          <TargetableHero ownedBy="PLAYER" health={health} hitFace={actions.hitFace} />
         </h1>
         <div className={styles.PlayerHandWrapper}>
           <Hand cards={hand} />

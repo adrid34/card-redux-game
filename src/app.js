@@ -20,12 +20,14 @@ store.dispatch(
   playCard({
     card: newRandomCard(),
     source: 'OPPONENT',
+    target: 'OPPONENT',
   })
 );
 store.dispatch(
   playCard({
     card: newRandomCard(),
     source: 'OPPONENT',
+    target: 'OPPONENT',
   })
 );
 

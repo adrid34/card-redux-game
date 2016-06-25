@@ -5,6 +5,7 @@ import { Hero } from 'components';
 export class TargetableHero extends Component {
   static propTypes = {
     connectDropTarget: PropTypes.func.isRequired,
+    ownedBy: PropTypes.oneOf(['PLAYER', 'OPPONENT']).isRequired,
     health: PropTypes.number.isRequired,
   }
 
@@ -24,6 +25,7 @@ const heroTarget = {
     const minion = monitor.getItem().card;
 
     props.hitFace({
+      target: props.ownedBy,
       damage: minion.attack,
     });
   },
