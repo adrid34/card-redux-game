@@ -37,6 +37,7 @@ const cardSource = {
       card: props.card,
       handIndex: props.index,
       source: 'PLAYER',
+      target: 'PLAYER',
     };
   },
 };

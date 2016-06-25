@@ -13,8 +13,9 @@ const initialState = new List([
   newCardByName('Azure Drake'),
 ]);
 
-export function playCard({ card, handIndex, boardIndex, source }) {
+export function playCard({ target, card, handIndex, boardIndex, source }) {
   return {
+    target,
     card,
     handIndex,
     boardIndex,

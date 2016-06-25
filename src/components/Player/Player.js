@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { DragDropContext as dragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import { List } from 'immutable';
 import { TargetableHero, BoardSideDropTarget, CustomDragLayer } from 'containers';
 import { Hand, BoardSide } from 'components';
@@ -22,6 +20,15 @@ export class Player extends Component {
     }).isRequired,
   }
 
+  constructor() {
+    super();
+    this.drawCard = this.drawCard.bind(this);
+  }
+
+  drawCard() {
+    this.props.actions.drawCard({ target: 'PLAYER' });
+  }
+
   render() {
     const { name, hand, board, actions } = this.props;
     const { mana, health } = this.props.character;
@@ -33,9 +40,9 @@ export class Player extends Component {
         <BoardSide>
           <BoardSideDropTarget board={board} playCard={actions.playCard} />
         </BoardSide>
-        <h1 className={styles.PlayerName} onClick={actions.drawCard}>
+        <h1 className={styles.PlayerName} onClick={this.drawCard}>
           { name || 'Unnamed' } - Mana: { mana } and Health: { health }
-          <TargetableHero health={health} hitFace={actions.hitFace} />
+          <TargetableHero ownedBy="PLAYER" health={health} hitFace={actions.hitFace} />
         </h1>
         <div className={styles.PlayerHandWrapper}>
           <Hand cards={hand} />
@@ -45,4 +52,4 @@ export class Player extends Component {
   }
 }
 
-export default dragDropContext(HTML5Backend)(Player);
+export default Player;
