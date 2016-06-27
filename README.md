@@ -35,5 +35,5 @@ $ open http://localhost:3000
 Current progress:
 -----------------
 
-Updated: 18 June 2016
-![Current progress](https://cloud.githubusercontent.com/assets/1291263/16197296/d4d816ee-3701-11e6-9142-8a20ffa2d5f3.png)
+Updated: 27 June 2016
+![Current progress](https://cloud.githubusercontent.com/assets/1291263/16381610/a247a308-3c7d-11e6-8634-4c2b0ce4be62.gif)
