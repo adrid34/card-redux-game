@@ -8,7 +8,7 @@ const Opponent = ({ name, character, handCount, board, actions }) => {
   const styles = require('./Opponent.scss');
 
   const minions = board.map((card, index) => (
-    <TargetableMinion key={index} index={index} card={card} hitMinion={actions.hitMinion} />
+    <TargetableMinion key={index} index={index} card={card} attackMinion={actions.attackMinion} />
   ));
 
   return (
@@ -42,7 +42,7 @@ Opponent.propTypes = {
     playCard: PropTypes.func.isRequired,
     drawCard: PropTypes.func.isRequired,
     hitFace: PropTypes.func.isRequired,
-    hitMinion: PropTypes.func.isRequired,
+    attackMinion: PropTypes.func.isRequired,
   }).isRequired,
 };
 

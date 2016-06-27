@@ -14,7 +14,7 @@ export default function entities(state = initialState(), action) {
       ));
     case HIT_MINION:
       return state.update('minions', (minions) => (
-        minions.update(action.targetMinionId, (minion) => (
+        minions.update(action.minionId, (minion) => (
           minion.update('defense', (defense) => defense - action.damage)
         ))
       ));

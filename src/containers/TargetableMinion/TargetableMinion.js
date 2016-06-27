@@ -9,7 +9,7 @@ export class TargetableMinion extends Component {
     connectDropTarget: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
-    hitMinion: PropTypes.func.isRequired,
+    attackMinion: PropTypes.func.isRequired,
   }
 
   render() {
@@ -27,10 +27,11 @@ const minionTarget = {
   drop(props, monitor) {
     const sourceMinion = monitor.getItem().card;
 
-    props.hitMinion({
+    props.attackMinion({
+      sourceMinion,
+      source: 'PLAYER',
+      targetMinion: props.card,
       target: 'OPPONENT',
-      targetMinionId: props.card.id,
-      damage: sourceMinion.attack,
     });
   },
 };
