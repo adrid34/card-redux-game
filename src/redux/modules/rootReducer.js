@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import player from 'redux/modules/player';
-import opponent from 'redux/modules/opponent';
+import entities from './entities';
+import player from './player';
+import opponent from './opponent';
 
 export default combineReducers({
+  entities,
   player,
   opponent,
 });

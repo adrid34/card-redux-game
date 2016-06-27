@@ -1,3 +1,4 @@
+import uuid from 'uuid';
 import { CardModel } from 'redux/modules/card';
 
 const cards = [
@@ -48,7 +49,7 @@ for (const card of cards) {
 export default function newCardByName(name = '') {
   const card = cardsByName[name.toLowerCase()];
   if (!card) throw new Error('There is no card with that name');
-  return new CardModel(card);
+  return new CardModel(Object.assign({}, card, { id: uuid.v4() }));
 }
 
 export function newRandomCard() {

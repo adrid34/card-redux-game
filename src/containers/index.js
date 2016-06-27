@@ -6,3 +6,4 @@ export DraggableCard from './DraggableCard/DraggableCard';
 export DraggableMinion from './DraggableMinion/DraggableMinion';
 export MinionDropTarget from './MinionDropTarget/MinionDropTarget';
 export TargetableHero from './TargetableHero/TargetableHero';
+export TargetableMinion from './TargetableMinion/TargetableMinion';

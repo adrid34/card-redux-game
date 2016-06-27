@@ -4,21 +4,22 @@ import { connect } from 'react-redux';
 import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+import { boardSelector } from 'redux/modules/board';
 import { drawCard } from 'redux/modules/deck';
 import { playCard } from 'redux/modules/hand';
-import { hitFace } from 'redux/modules/minion';
+import { hitFace, attackMinion } from 'redux/modules/minion';
 import { Player, PlayerSide, Opponent } from 'components';
 
-export const Board = ({ player, opponent, playerActions }) => {
+export const Board = ({ player, opponent, actions }) => {
   const styles = require('./Board.scss');
 
   return (
     <div className={styles.Board}>
       <PlayerSide>
-        <Opponent {...opponent} actions={playerActions} />
+        <Opponent {...opponent} actions={actions} />
       </PlayerSide>
       <PlayerSide>
-        <Player {...player} actions={playerActions} />
+        <Player {...player} actions={actions} />
       </PlayerSide>
     </div>
   );
@@ -31,15 +32,20 @@ Board.propTypes = {
   opponent: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }),
-  playerActions: PropTypes.shape({
+  actions: PropTypes.shape({
     playCard: PropTypes.func.isRequired,
     drawCard: PropTypes.func.isRequired,
+    hitFace: PropTypes.func.isRequired,
+    attackMinion: PropTypes.func.isRequired,
   }),
 };
 
-const mapStateToProps = ({ player, opponent }) => ({ player, opponent });
+const mapStateToProps = (state) => ({
+  player: Object.assign({}, state.player, { board: boardSelector(state, 'player') }),
+  opponent: Object.assign({}, state.opponent, { board: boardSelector(state, 'opponent') }),
+});
 const mapDispatchToProps = (dispatch) => ({
-  playerActions: bindActionCreators({ playCard, drawCard, hitFace }, dispatch),
+  actions: bindActionCreators({ playCard, drawCard, hitFace, attackMinion }, dispatch),
 });
 
 export default dragDropContext(HTML5Backend)(
