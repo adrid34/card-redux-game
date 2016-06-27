@@ -2,6 +2,14 @@ export const HIT_MINION = 'HIT_MINION';
 export const HIT_FACE = 'HIT_FACE';
 export const KILL_MINION = 'KILL_MINION';
 
+export function hitMinion({ minionId, damage }) {
+  return {
+    minionId,
+    damage,
+    type: HIT_MINION,
+  };
+}
+
 export function killMinion({ target, minionId }) {
   return {
     target,
@@ -10,20 +18,18 @@ export function killMinion({ target, minionId }) {
   };
 }
 
-export function hitMinion({ target, targetMinionId, damage }) {
-  return (dispatch, getState) => {
-    const { entities: { minions } } = getState();
+export function attackMinion({ target, targetMinion, source, sourceMinion }) {
+  return dispatch => {
+    dispatch(hitMinion({ minionId: targetMinion.id, damage: sourceMinion.attack }));
+    dispatch(hitMinion({ minionId: sourceMinion.id, damage: targetMinion.attack }));
 
-    if (minions.get(targetMinionId).defense - damage <= 0) {
-      return dispatch(killMinion({ target, minionId: targetMinionId }));
+    if (targetMinion.defense - sourceMinion.attack <= 0) {
+      dispatch(killMinion({ target, minionId: targetMinion.id }));
     }
 
-    return dispatch({
-      target,
-      targetMinionId,
-      damage,
-      type: HIT_MINION,
-    });
+    if (sourceMinion.defense - targetMinion.attack <= 0) {
+      dispatch(killMinion({ target: source, minionId: sourceMinion.id }));
+    }
   };
 }
 
