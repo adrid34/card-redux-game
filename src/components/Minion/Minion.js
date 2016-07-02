@@ -2,11 +2,14 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { CardModel } from 'redux/modules/card';
 
-const Minion = ({ card: { attack, defense, portrait } }) => {
+const Minion = ({ card: { attack, defense, portrait }, exhausted }) => {
   const styles = require('./Minion.scss');
 
   return (
-    <div className={styles.Minion} style={{ backgroundImage: `url(${portrait})` }}>
+    <div
+      className={classNames(styles.Minion, { [styles.MinionSleeping]: exhausted })}
+      style={{ backgroundImage: `url(${portrait})` }}
+    >
       <div className={classNames(styles.MinionStat, styles.MinionAttack)}>
         { attack || 0 }
       </div>
@@ -19,6 +22,7 @@ const Minion = ({ card: { attack, defense, portrait } }) => {
 
 Minion.propTypes = {
   card: PropTypes.instanceOf(CardModel).isRequired,
+  exhausted: PropTypes.bool,
 };
 
 export default Minion;
