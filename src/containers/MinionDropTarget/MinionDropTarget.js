@@ -11,16 +11,17 @@ export class MinionDropTarget extends Component {
     boardSize: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
+    exhausted: PropTypes.bool.isRequired,
     playCard: PropTypes.func.isRequired,
   }
 
   render() {
-    const { connectDropTarget, card } = this.props;
+    const { connectDropTarget, card, exhausted } = this.props;
     const sharedStyles = require('components/shared/styles.scss');
 
     return connectDropTarget(
       <div className={sharedStyles.fullHeight}>
-        <DraggableMinion card={card} />
+        <DraggableMinion card={card} exhausted={exhausted} />
       </div>
     );
   }

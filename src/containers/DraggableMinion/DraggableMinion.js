@@ -10,6 +10,7 @@ export class DraggableMinion extends Component {
     connectDragPreview: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
+    exhausted: PropTypes.bool.isRequired,
   }
 
   componentDidMount() {
@@ -18,12 +19,12 @@ export class DraggableMinion extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, card } = this.props;
+    const { connectDragSource, isDragging, card, exhausted } = this.props;
     const sharedStyles = require('components/shared/styles.scss');
 
     return connectDragSource(
       <div className={sharedStyles.fullHeight} style={{ opacity: isDragging ? 0 : 1 }}>
-        <Minion card={card} />
+        <Minion card={card} exhausted={exhausted} />
       </div>
     );
   }
@@ -37,6 +38,7 @@ const minionSource = {
   },
 
   canDrag(props) {
+    if (props.exhausted) return false;
     if (props.card.attack <= 0) return false;
     return true;
   },

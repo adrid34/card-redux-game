@@ -8,19 +8,21 @@ import { MinionsOnBoard } from 'components';
 export class BoardSideDropTarget extends Component {
   static propTypes = {
     board: PropTypes.instanceOf(List),
+    exhaustedMinionIds: PropTypes.instanceOf(List),
     connectDropTarget: PropTypes.func.isRequired,
     playCard: PropTypes.func.isRequired,
   }
 
   render() {
-    const { board, connectDropTarget, playCard } = this.props;
+    const { board, exhaustedMinionIds, connectDropTarget, playCard } = this.props;
     const sharedStyles = require('components/shared/styles.scss');
 
     const minions = board.map((card, index) => (
       <MinionDropTarget
-        key={index}
+        key={card.id}
         index={index}
         card={card}
+        exhausted={exhaustedMinionIds.includes(card.id)}
         boardSize={board.size}
         playCard={playCard}
       />

@@ -25,6 +25,8 @@ const heroTarget = {
     const minion = monitor.getItem().card;
 
     props.hitFace({
+      source: 'PLAYER',
+      sourceMinionId: minion.id,
       target: props.ownedBy,
       damage: minion.attack,
     });

@@ -41,8 +41,14 @@ Board.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  player: Object.assign({}, state.player, { board: boardSelector(state, 'player') }),
-  opponent: Object.assign({}, state.opponent, { board: boardSelector(state, 'opponent') }),
+  player: Object.assign({}, state.player, {
+    board: boardSelector(state, 'player'),
+    exhaustedMinionIds: state.player.board.exhaustedMinionIds,
+  }),
+  opponent: Object.assign({}, state.opponent, {
+    board: boardSelector(state, 'opponent'),
+    exhaustedMinionIds: state.player.board.exhaustedMinionIds,
+  }),
 });
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ playCard, drawCard, hitFace, attackMinion }, dispatch),

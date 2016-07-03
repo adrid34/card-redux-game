@@ -1,6 +1,16 @@
+export const EXHAUST_MINION = 'EXHAUST_MINION';
+export const ATTACK_MINION = 'ATTACK_MINION';
 export const HIT_MINION = 'HIT_MINION';
 export const HIT_FACE = 'HIT_FACE';
 export const KILL_MINION = 'KILL_MINION';
+
+function exhaustMinion({ source, minionId }) {
+  return {
+    source,
+    minionId,
+    type: EXHAUST_MINION,
+  };
+}
 
 export function hitMinion({ minionId, damage }) {
   return {
@@ -19,7 +29,9 @@ export function killMinion({ target, minionId }) {
 }
 
 export function attackMinion({ target, targetMinion, source, sourceMinion }) {
-  return dispatch => {
+  return (dispatch) => {
+    dispatch({ target, targetMinion, source, sourceMinion, type: ATTACK_MINION });
+    dispatch(exhaustMinion({ source, minionId: sourceMinion.id }));
     dispatch(hitMinion({ minionId: targetMinion.id, damage: sourceMinion.attack }));
     dispatch(hitMinion({ minionId: sourceMinion.id, damage: targetMinion.attack }));
 
@@ -33,10 +45,9 @@ export function attackMinion({ target, targetMinion, source, sourceMinion }) {
   };
 }
 
-export function hitFace({ target, damage }) {
-  return {
-    target,
-    damage,
-    type: HIT_FACE,
+export function hitFace({ source, sourceMinionId, target, damage }) {
+  return dispatch => {
+    dispatch(exhaustMinion({ source, minionId: sourceMinionId }));
+    dispatch({ target, damage, type: HIT_FACE });
   };
 }
