@@ -26,6 +26,10 @@ export default function boardReducer(state = initialState(), action) {
       return state.update('exhaustedMinionIds', exhausted => (
         exhausted.push(action.minionId)
       ));
+    case END_TURN:
+      return state.update('exhaustedMinionIds', exhausted => (
+        exhausted.clear()
+      ));
     default:
       return state;
   }
