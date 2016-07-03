@@ -35,3 +35,21 @@ $stats-padding: 1vh 1.5vh;
   bottom: -$stats-distance;
   right: -$stats-distance;
 }
+
+.MinionSleeping {
+  &:before {
+    content: 'z';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  &:after {
+    content: 'z z';
+    position: absolute;
+    top: -15px;
+    right: 7px;
+    width: 5px;
+    line-height: 0.7;
+    text-indent: 5px;
+  }
+}

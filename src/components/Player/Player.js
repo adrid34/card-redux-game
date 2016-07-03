@@ -13,6 +13,7 @@ export class Player extends Component {
     hand: PropTypes.instanceOf(List),
     deck: PropTypes.array,
     board: PropTypes.instanceOf(List),
+    exhaustedMinionIds: PropTypes.instanceOf(List),
     actions: PropTypes.shape({
       playCard: PropTypes.func.isRequired,
       drawCard: PropTypes.func.isRequired,
@@ -30,7 +31,7 @@ export class Player extends Component {
   }
 
   render() {
-    const { name, hand, board, actions } = this.props;
+    const { name, hand, board, exhaustedMinionIds, actions } = this.props;
     const { mana, health } = this.props.character;
     const styles = require('./Player.scss');
 
@@ -38,7 +39,11 @@ export class Player extends Component {
       <div className={styles.Player}>
         <CustomDragLayer />
         <BoardSide>
-          <BoardSideDropTarget board={board} playCard={actions.playCard} />
+          <BoardSideDropTarget
+            board={board}
+            exhaustedMinionIds={exhaustedMinionIds}
+            playCard={actions.playCard}
+          />
         </BoardSide>
         <h1 className={styles.PlayerName} onClick={this.drawCard}>
           { name || 'Unnamed' } - Mana: { mana } and Health: { health }
