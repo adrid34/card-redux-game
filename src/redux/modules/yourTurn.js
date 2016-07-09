@@ -1,12 +1,27 @@
+import { drawCard } from './deck';
+import { NEW_GAME } from './game';
+import { addMana } from './character';
+
 export const END_TURN = 'END_TURN';
 
 export function endTurn() {
-  return {
-    type: END_TURN,
+  return (dispatch, getState) => {
+    const { yourTurn: currentYourTurn } = getState();
+    const target = currentYourTurn ? 'OPPONENT' : 'PLAYER';
+
+    dispatch(addMana({ target }));
+    dispatch(drawCard({ target }));
+    dispatch({ type: END_TURN });
   };
 }
 
 export default function yourTurn(state = true, action) {
-  if (action.type !== END_TURN) return state;
-  return !state;
+  switch (action.type) {
+    case NEW_GAME:
+      return action.isPlayerStarting;
+    case END_TURN:
+      return !state;
+    default:
+      return state;
+  }
 }
