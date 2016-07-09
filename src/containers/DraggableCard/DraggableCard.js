@@ -32,6 +32,9 @@ export class DraggableCard extends Component {
 }
 
 const cardSource = {
+  canDrag(props) {
+    return props.canDrag;
+  },
   beginDrag(props) {
     return {
       card: props.card,

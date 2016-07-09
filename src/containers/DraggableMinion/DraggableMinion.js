@@ -8,6 +8,7 @@ export class DraggableMinion extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
     connectDragPreview: PropTypes.func.isRequired,
+    yourTurn: PropTypes.bool.isRequired,
     isDragging: PropTypes.bool.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
     exhausted: PropTypes.bool.isRequired,
@@ -38,6 +39,7 @@ const minionSource = {
   },
 
   canDrag(props) {
+    if (!props.yourTurn) return false;
     if (props.exhausted) return false;
     if (props.card.attack <= 0) return false;
     return true;

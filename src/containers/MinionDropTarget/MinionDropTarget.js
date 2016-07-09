@@ -10,18 +10,20 @@ export class MinionDropTarget extends Component {
     connectDropTarget: PropTypes.func.isRequired,
     boardSize: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
+    yourTurn: PropTypes.bool.isRequired,
+    canDrop: PropTypes.bool.isRequired,
     card: PropTypes.instanceOf(CardModel).isRequired,
     exhausted: PropTypes.bool.isRequired,
     playCard: PropTypes.func.isRequired,
   }
 
   render() {
-    const { connectDropTarget, card, exhausted } = this.props;
+    const { yourTurn, connectDropTarget, card, exhausted } = this.props;
     const sharedStyles = require('components/shared/styles.scss');
 
     return connectDropTarget(
       <div className={sharedStyles.fullHeight}>
-        <DraggableMinion card={card} exhausted={exhausted} />
+        <DraggableMinion card={card} yourTurn={yourTurn} exhausted={exhausted} />
       </div>
     );
   }
@@ -29,10 +31,7 @@ export class MinionDropTarget extends Component {
 
 const cardTarget = {
   canDrop(props) {
-    if (props.boardSize >= 7) {
-      return false;
-    }
-    return true;
+    return props.canDrop;
   },
 
   drop(props, monitor, component) {

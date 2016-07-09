@@ -14,6 +14,7 @@ export class Player extends Component {
     deck: PropTypes.array,
     board: PropTypes.instanceOf(List),
     exhaustedMinionIds: PropTypes.instanceOf(List),
+    yourTurn: PropTypes.bool.isRequired,
     actions: PropTypes.shape({
       playCard: PropTypes.func.isRequired,
       drawCard: PropTypes.func.isRequired,
@@ -31,8 +32,9 @@ export class Player extends Component {
   }
 
   render() {
-    const { name, hand, board, exhaustedMinionIds, actions } = this.props;
+    const { name, hand, board, exhaustedMinionIds, yourTurn, actions } = this.props;
     const { mana, health } = this.props.character;
+    const isBoardFull = this.props.board.size >= 7;
     const styles = require('./Player.scss');
 
     return (
@@ -42,6 +44,8 @@ export class Player extends Component {
           <BoardSideDropTarget
             board={board}
             exhaustedMinionIds={exhaustedMinionIds}
+            yourTurn={yourTurn}
+            isBoardFull={isBoardFull}
             playCard={actions.playCard}
           />
         </BoardSide>
@@ -50,7 +54,7 @@ export class Player extends Component {
           <TargetableHero ownedBy="PLAYER" health={health} hitFace={actions.hitFace} />
         </h1>
         <div className={styles.PlayerHandWrapper}>
-          <Hand cards={hand} />
+          <Hand cards={hand} canDrag={yourTurn} />
         </div>
       </div>
     );
