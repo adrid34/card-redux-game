@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { Record, List } from 'immutable';
-import { END_TURN } from './game';
+import { END_TURN } from './yourTurn';
 import { PLAY_CARD } from './hand';
 import { EXHAUST_MINION, KILL_MINION } from './minion';
 
