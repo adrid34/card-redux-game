@@ -45,6 +45,13 @@ const cardsByName = {};
 for (const card of cards) {
   cardsByName[card.name.toLowerCase()] = card;
 }
+cardsByName['the coin'] = {
+  name: 'The Coin',
+  mana: 0,
+  attack: 0,
+  defense: 0,
+  portrait: 'https://hydra-media.cursecdn.com/hearthstone.gamepedia.com/a/a9/The_Coin_full.jpg',
+};
 
 export default function newCardByName(name = '') {
   const card = cardsByName[name.toLowerCase()];
