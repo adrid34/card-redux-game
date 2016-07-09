@@ -24,8 +24,11 @@ export function playCard({ target, card, handIndex, boardIndex, source }) {
   };
 }
 
-function drawCardHandler(state) {
+function drawCardHandler(state, action) {
   if (state.size + 1 > MAX_CARDS) return state;
+  if (action.name) {
+    return state.push(newCardByName(action.name));
+  }
   return state.push(newRandomCard());
 }
 
