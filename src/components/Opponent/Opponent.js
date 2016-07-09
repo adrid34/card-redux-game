@@ -14,7 +14,7 @@ const Opponent = ({ name, character, handCount, board, actions }) => {
   return (
     <div className={styles.Opponent}>
       <h1 className={styles.OpponentName}>
-        { name || 'Unnamed' } - Mana: { mana } and Health: { health }
+        { name || 'Unnamed' } - Mana: { mana.spendableMana }/{ mana.max } and Health: { health }
         <TargetableHero ownedBy="OPPONENT" health={health} hitFace={actions.hitFace} />
       </h1>
       <div className={styles.OpponentHandWrapper}>
@@ -33,7 +33,10 @@ Opponent.propTypes = {
   name: PropTypes.string,
   character: PropTypes.shape({
     health: PropTypes.number.isRequired,
-    mana: PropTypes.number.isRequired,
+    mana: PropTypes.shape({
+      max: PropTypes.number.isRequired,
+      spendableMana: PropTypes.number.isRequired,
+    }),
   }),
   handCount: PropTypes.number,
   deckCount: PropTypes.number,

@@ -8,7 +8,10 @@ export class Player extends Component {
     name: PropTypes.string,
     character: PropTypes.shape({
       health: PropTypes.number.isRequired,
-      mana: PropTypes.number.isRequired,
+      mana: PropTypes.shape({
+        max: PropTypes.number.isRequired,
+        spendableMana: PropTypes.number.isRequired,
+      }),
     }),
     hand: PropTypes.instanceOf(List),
     deck: PropTypes.array,
@@ -50,7 +53,7 @@ export class Player extends Component {
           />
         </BoardSide>
         <h1 className={styles.PlayerName} onClick={this.drawCard}>
-          { name || 'Unnamed' } - Mana: { mana } and Health: { health }
+          { name || 'Unnamed' } - Mana: { mana.spendableMana }/{ mana.max } and Health: { health }
           <TargetableHero ownedBy="PLAYER" health={health} hitFace={actions.hitFace} />
         </h1>
         <div className={styles.PlayerHandWrapper}>
