@@ -2,12 +2,36 @@ import { HIT_FACE } from './minion';
 import { Record } from 'immutable';
 
 const ADD_MAX_MANA = 'ADD_MANA';
+const ADD_SPENDABLE_MANA = 'ADD_SPENDABLE_MANA';
+const FILL_MAX_MANA = 'FILL_MAX_MANA';
 
 export function addMaxMana({ target, amount = 1 }) {
   return {
     target,
     amount,
     type: ADD_MAX_MANA,
+  };
+}
+
+export function addSpendableMana({ target, amount = 1 }) {
+  return {
+    target,
+    amount,
+    type: ADD_SPENDABLE_MANA,
+  };
+}
+
+export function fillMaxMana({ target }) {
+  return {
+    target,
+    type: FILL_MAX_MANA,
+  };
+}
+
+export function addAndFillMana({ target }) {
+  return dispatch => {
+    dispatch(addMaxMana({ target }));
+    dispatch(fillMaxMana({ target }));
   };
 }
 
@@ -20,6 +44,10 @@ function manaReducer(state = manaReducerInitialState(), action) {
   switch (action.type) {
     case ADD_MAX_MANA:
       return state.update('max', max => max + action.amount);
+    case ADD_SPENDABLE_MANA:
+      return state.update('spendableMana', spendableMana => spendableMana + action.amount);
+    case FILL_MAX_MANA:
+      return state.set('spendableMana', state.get('max'));
     default:
       return state;
   }
@@ -35,6 +63,8 @@ export default function characterReducer(state = initialState(), action) {
     case HIT_FACE:
       return state.update('health', health => health - action.damage);
     case ADD_MAX_MANA:
+    case ADD_SPENDABLE_MANA:
+    case FILL_MAX_MANA:
       return state.update('mana', mana => manaReducer(mana, action));
     default:
       return state;

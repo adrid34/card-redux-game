@@ -1,6 +1,6 @@
 import { drawCard } from './deck';
 import { NEW_GAME } from './game';
-import { addMana } from './character';
+import { addAndFillMana } from './character';
 
 export const END_TURN = 'END_TURN';
 
@@ -9,7 +9,7 @@ export function endTurn() {
     const { yourTurn: currentYourTurn } = getState();
     const target = currentYourTurn ? 'OPPONENT' : 'PLAYER';
 
-    dispatch(addMana({ target }));
+    dispatch(addAndFillMana({ target }));
     dispatch(drawCard({ target }));
     dispatch({ type: END_TURN });
   };

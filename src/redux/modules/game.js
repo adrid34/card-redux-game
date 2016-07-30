@@ -1,11 +1,11 @@
 import { drawCard } from './deck';
-import { addMana } from './character';
+import { addAndFillMana } from './character';
 
 export const NEW_GAME = 'NEW_GAME';
 
 export function newGame({ yourName, opponentName, isPlayerStarting }) {
   return dispatch => {
-    dispatch(addMana({ target: isPlayerStarting ? 'PLAYER' : 'OPPONENT' }));
+    dispatch(addAndFillMana({ target: isPlayerStarting ? 'PLAYER' : 'OPPONENT' }));
     dispatch(drawCard({ name: 'The Coin', target: isPlayerStarting ? 'OPPONENT' : 'PLAYER' }));
 
     return dispatch({
