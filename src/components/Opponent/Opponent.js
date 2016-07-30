@@ -42,7 +42,7 @@ Opponent.propTypes = {
   deckCount: PropTypes.number,
   board: PropTypes.instanceOf(List),
   actions: PropTypes.shape({
-    playCard: PropTypes.func.isRequired,
+    playCardWithCost: PropTypes.func.isRequired,
     drawCard: PropTypes.func.isRequired,
     hitFace: PropTypes.func.isRequired,
     attackMinion: PropTypes.func.isRequired,
