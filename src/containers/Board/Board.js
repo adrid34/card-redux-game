@@ -7,7 +7,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { boardSelector } from 'redux/modules/board';
 import { endTurn } from 'redux/modules/yourTurn';
 import { drawCard } from 'redux/modules/deck';
-import { playCard } from 'redux/modules/hand';
+import { playCardWithCost } from 'redux/modules/hand';
 import { hitFace, attackMinion } from 'redux/modules/minion';
 import { Player, PlayerSide, Opponent } from 'components';
 
@@ -37,7 +37,7 @@ Board.propTypes = {
     name: PropTypes.string.isRequired,
   }),
   actions: PropTypes.shape({
-    playCard: PropTypes.func.isRequired,
+    playCardWithCost: PropTypes.func.isRequired,
     drawCard: PropTypes.func.isRequired,
     hitFace: PropTypes.func.isRequired,
     attackMinion: PropTypes.func.isRequired,
@@ -56,7 +56,13 @@ const mapStateToProps = (state) => ({
   }),
 });
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ playCard, drawCard, hitFace, attackMinion, endTurn }, dispatch),
+  actions: bindActionCreators({
+    playCardWithCost,
+    drawCard,
+    hitFace,
+    attackMinion,
+    endTurn,
+  }, dispatch),
 });
 
 export default dragDropContext(HTML5Backend)(

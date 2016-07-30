@@ -19,7 +19,7 @@ export class Player extends Component {
     exhaustedMinionIds: PropTypes.instanceOf(List),
     yourTurn: PropTypes.bool.isRequired,
     actions: PropTypes.shape({
-      playCard: PropTypes.func.isRequired,
+      playCardWithCost: PropTypes.func.isRequired,
       drawCard: PropTypes.func.isRequired,
       hitFace: PropTypes.func.isRequired,
     }).isRequired,
@@ -49,7 +49,7 @@ export class Player extends Component {
             exhaustedMinionIds={exhaustedMinionIds}
             yourTurn={yourTurn}
             isBoardFull={isBoardFull}
-            playCard={actions.playCard}
+            playCard={actions.playCardWithCost}
           />
         </BoardSide>
         <h1 className={styles.PlayerName} onClick={this.drawCard}>
