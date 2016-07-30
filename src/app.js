@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 
 import configureStore from 'redux/configureStore';
 import { newGame } from 'redux/modules/game';
-import { playCard } from 'redux/modules/hand';
-import { newRandomCard } from 'redux/utils/cards';
 import { DevTools, Board } from './containers';
 import './styles/app.scss';
 import sharedStyles from 'components/shared/styles.scss';
@@ -20,20 +18,6 @@ store.dispatch(newGame({
   opponentName: 'OpponentName',
   isPlayerStarting: Math.random() >= 0.5,
 }));
-store.dispatch(
-  playCard({
-    card: newRandomCard(),
-    source: 'OPPONENT',
-    target: 'OPPONENT',
-  })
-);
-store.dispatch(
-  playCard({
-    card: newRandomCard(),
-    source: 'OPPONENT',
-    target: 'OPPONENT',
-  })
-);
 
 const App = () => (
   <Board />
