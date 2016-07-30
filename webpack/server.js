@@ -1,18 +1,24 @@
-const WebpackDevServer = require('webpack-dev-server');
+const app = require('express')();
+const server = require('http').Server(app); // eslint-disable-line
+
 const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
 const port = 3000;
 
 const compiler = webpack(config);
-const server = new WebpackDevServer(compiler, {
+app.use(webpackMiddleware(compiler, {
   hot: true,
   filename: config.output.filename,
   publicPath: config.output.publicPath,
   stats: {
     colors: true,
   },
-});
+}));
+app.use(webpackHotMiddleware(compiler));
+
 server.listen(port, 'localhost', (error) => {
   if (error) {
     console.error(error);
