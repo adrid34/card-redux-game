@@ -10,11 +10,20 @@ export class BoardSideDropTarget extends Component {
     board: PropTypes.instanceOf(List),
     exhaustedMinionIds: PropTypes.instanceOf(List),
     connectDropTarget: PropTypes.func.isRequired,
+    yourTurn: PropTypes.bool.isRequired,
+    isBoardFull: PropTypes.bool.isRequired,
     playCard: PropTypes.func.isRequired,
   }
 
   render() {
-    const { board, exhaustedMinionIds, connectDropTarget, playCard } = this.props;
+    const {
+      yourTurn,
+      isBoardFull,
+      board,
+      exhaustedMinionIds,
+      connectDropTarget,
+      playCard,
+    } = this.props;
     const sharedStyles = require('components/shared/styles.scss');
 
     const minions = board.map((card, index) => (
@@ -22,12 +31,13 @@ export class BoardSideDropTarget extends Component {
         key={card.id}
         index={index}
         card={card}
+        yourTurn={yourTurn}
+        canDrop={!isBoardFull}
         exhausted={exhaustedMinionIds.includes(card.id)}
         boardSize={board.size}
         playCard={playCard}
       />
     ));
-
 
     return connectDropTarget(
       <div className={sharedStyles.fullSize}>
@@ -41,12 +51,8 @@ export class BoardSideDropTarget extends Component {
 
 const boardTarget = {
   canDrop(props) {
-    if (props.board.size >= 7) {
-      return false;
-    }
-    return true;
+    return !props.isBoardFull;
   },
-
   drop(props, monitor, component) {
     const card = monitor.getItem();
     const droppedOnBoard = monitor.isOver({ shallow: true });

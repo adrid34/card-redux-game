@@ -15,7 +15,11 @@ if (module.hot) {
 }
 
 const store = configureStore();
-store.dispatch(newGame({ yourName: 'Inooid', opponentName: 'OpponentName' }));
+store.dispatch(newGame({
+  yourName: 'Inooid',
+  opponentName: 'OpponentName',
+  isPlayerStarting: Math.random() >= 0.5,
+}));
 store.dispatch(
   playCard({
     card: newRandomCard(),

@@ -8,14 +8,18 @@ export class Player extends Component {
     name: PropTypes.string,
     character: PropTypes.shape({
       health: PropTypes.number.isRequired,
-      mana: PropTypes.number.isRequired,
+      mana: PropTypes.shape({
+        max: PropTypes.number.isRequired,
+        spendableMana: PropTypes.number.isRequired,
+      }),
     }),
     hand: PropTypes.instanceOf(List),
     deck: PropTypes.array,
     board: PropTypes.instanceOf(List),
     exhaustedMinionIds: PropTypes.instanceOf(List),
+    yourTurn: PropTypes.bool.isRequired,
     actions: PropTypes.shape({
-      playCard: PropTypes.func.isRequired,
+      playCardWithCost: PropTypes.func.isRequired,
       drawCard: PropTypes.func.isRequired,
       hitFace: PropTypes.func.isRequired,
     }).isRequired,
@@ -31,8 +35,9 @@ export class Player extends Component {
   }
 
   render() {
-    const { name, hand, board, exhaustedMinionIds, actions } = this.props;
+    const { name, hand, board, exhaustedMinionIds, yourTurn, actions } = this.props;
     const { mana, health } = this.props.character;
+    const isBoardFull = this.props.board.size >= 7;
     const styles = require('./Player.scss');
 
     return (
@@ -42,15 +47,17 @@ export class Player extends Component {
           <BoardSideDropTarget
             board={board}
             exhaustedMinionIds={exhaustedMinionIds}
-            playCard={actions.playCard}
+            yourTurn={yourTurn}
+            isBoardFull={isBoardFull}
+            playCard={actions.playCardWithCost}
           />
         </BoardSide>
         <h1 className={styles.PlayerName} onClick={this.drawCard}>
-          { name || 'Unnamed' } - Mana: { mana } and Health: { health }
+          { name || 'Unnamed' } - Mana: { mana.spendableMana }/{ mana.max } and Health: { health }
           <TargetableHero ownedBy="PLAYER" health={health} hitFace={actions.hitFace} />
         </h1>
         <div className={styles.PlayerHandWrapper}>
-          <Hand cards={hand} />
+          <Hand cards={hand} yourTurn={yourTurn} spendableMana={mana.spendableMana} />
         </div>
       </div>
     );

@@ -1,7 +1,8 @@
 export const DRAW_CARD = 'DRAW_CARD';
 
-export function drawCard({ target }) {
+export function drawCard({ name, target }) {
   return {
+    name,
     target,
     type: DRAW_CARD,
   };
