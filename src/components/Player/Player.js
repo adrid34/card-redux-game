@@ -57,7 +57,7 @@ export class Player extends Component {
           <TargetableHero ownedBy="PLAYER" health={health} hitFace={actions.hitFace} />
         </h1>
         <div className={styles.PlayerHandWrapper}>
-          <Hand cards={hand} canDrag={yourTurn} />
+          <Hand cards={hand} yourTurn={yourTurn} spendableMana={mana.spendableMana} />
         </div>
       </div>
     );

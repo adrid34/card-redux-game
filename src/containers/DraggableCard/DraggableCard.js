@@ -13,6 +13,7 @@ export class DraggableCard extends Component {
     className: PropTypes.string,
     hoverable: PropTypes.bool,
     isDragging: PropTypes.bool.isRequired,
+    canDrag: PropTypes.bool.isRequired,
   }
 
   componentDidMount() {

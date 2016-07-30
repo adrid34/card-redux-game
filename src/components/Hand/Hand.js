@@ -3,7 +3,11 @@ import classNames from 'classnames';
 import { List } from 'immutable';
 import { DraggableCard } from 'containers';
 
-const Hand = ({ canDrag, cards }) => {
+function hasEnoughMana(card, spendableMana) {
+  return card.mana <= spendableMana;
+}
+
+const Hand = ({ yourTurn, spendableMana, cards }) => {
   const styles = require('./Hand.scss');
   const cardStyles = require('./../Card/Card.scss');
 
@@ -13,6 +17,7 @@ const Hand = ({ canDrag, cards }) => {
       [cardStyles[`CardTotal-${cardsLength}`]]: cardsLength,
       [cardStyles[`CardNumber-${index + 1}-of-${cardsLength}`]]: (typeof index !== undefined),
     });
+    const canDrag = yourTurn && hasEnoughMana(card, spendableMana);
 
     return (
       <DraggableCard
@@ -34,7 +39,8 @@ const Hand = ({ canDrag, cards }) => {
 
 Hand.propTypes = {
   cards: PropTypes.instanceOf(List),
-  canDrag: PropTypes.bool.isRequired,
+  yourTurn: PropTypes.bool.isRequired,
+  spendableMana: PropTypes.number.isRequired,
 };
 
 export default Hand;
