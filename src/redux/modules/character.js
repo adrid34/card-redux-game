@@ -4,6 +4,7 @@ import { Record } from 'immutable';
 const ADD_MAX_MANA = 'ADD_MANA';
 const ADD_SPENDABLE_MANA = 'ADD_SPENDABLE_MANA';
 const FILL_MAX_MANA = 'FILL_MAX_MANA';
+const SPEND_MANA = 'SPEND_MANA';
 
 export function addMaxMana({ target, amount = 1 }) {
   return {
@@ -35,6 +36,14 @@ export function addAndFillMana({ target }) {
   };
 }
 
+export function spendMana({ target, amount }) {
+  return {
+    target,
+    amount,
+    type: SPEND_MANA,
+  };
+}
+
 const manaReducerInitialState = new Record({
   max: 0,
   spendableMana: 0,
@@ -48,6 +57,8 @@ function manaReducer(state = manaReducerInitialState(), action) {
       return state.update('spendableMana', spendableMana => spendableMana + action.amount);
     case FILL_MAX_MANA:
       return state.set('spendableMana', state.get('max'));
+    case SPEND_MANA:
+      return state.update('spendableMana', spendableMana => spendableMana - action.amount);
     default:
       return state;
   }
@@ -65,6 +76,7 @@ export default function characterReducer(state = initialState(), action) {
     case ADD_MAX_MANA:
     case ADD_SPENDABLE_MANA:
     case FILL_MAX_MANA:
+    case SPEND_MANA:
       return state.update('mana', mana => manaReducer(mana, action));
     default:
       return state;
