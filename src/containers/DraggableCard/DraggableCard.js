@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { DragSource as dragSource } from 'react-dnd';
+import classNames from 'classnames';
 import { CardModel } from 'redux/modules/card';
 import { Card } from 'components';
 
@@ -22,11 +23,15 @@ export class DraggableCard extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, card, className } = this.props;
+    const { connectDragSource, isDragging, canDrag, card, className } = this.props;
+    const styles = require('./../../components/Card/Card.scss');
+    const newClass = classNames(className, {
+      [styles.CardCanDrag]: canDrag,
+    });
 
     return connectDragSource(
       <div style={{ display: isDragging ? 'none' : undefined }}>
-        <Card card={card} className={className} />
+        <Card card={card} className={newClass} />
       </div>
     );
   }
