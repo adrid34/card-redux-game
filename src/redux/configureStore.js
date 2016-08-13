@@ -17,7 +17,7 @@ socket.on('connect', logSomething('connect'));
 socket.on('disconnect', logSomething('disconnect'));
 
 const ioMiddleWare = () => next => action => {
-  if (!action.fromOpponent && action.type !== 'NEW_GAME') {
+  if (!action.fromServer && action.type !== 'NEW_GAME') {
     console.log(action);
     if (action.card) {
       console.log('typeof action.card', typeof action.card);
@@ -48,7 +48,7 @@ export default function configureStore(initialState) {
       action.card = new CardModel(action.card);
     }
 
-    store.dispatch({ fromOpponent: true, ...action });
+    store.dispatch({ fromServer: true, ...action });
   });
 
   if (module.hot) {
