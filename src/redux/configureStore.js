@@ -13,7 +13,7 @@ function logSomething(name) {
   };
 }
 
-socket.on('connect',  logSomething('connect'));
+socket.on('connect', logSomething('connect'));
 socket.on('disconnect', logSomething('disconnect'));
 
 const ioMiddleWare = () => next => action => {
