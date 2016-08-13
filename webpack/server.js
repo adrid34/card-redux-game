@@ -1,6 +1,7 @@
 const app = require('express')();
 const server = require('http').Server(app); // eslint-disable-line
 const io = require('socket.io')(server);
+const uuid = require('uuid');
 
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -8,6 +9,16 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
 const port = 3000;
+
+app.post('/api/game/new', (req, res) => {
+  console.log(req.body);
+
+  setTimeout(() => {
+    res.json({
+      gameId: uuid.v4(),
+    });
+  }, 5000);
+});
 
 const compiler = webpack(config);
 app.use(webpackMiddleware(compiler, {
