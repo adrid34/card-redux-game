@@ -7,8 +7,7 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: [
     path.join(__dirname, '..', 'src', 'app.js'),
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:3000/',
+    'webpack-hot-middleware/client',
   ],
   output: {
     path: path.join(__dirname, '..', 'dist'),

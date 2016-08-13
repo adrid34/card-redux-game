@@ -1,4 +1,3 @@
-// import uuid from 'uuid';
 import { Record as record } from 'immutable';
 
 export const CardModel = record({
