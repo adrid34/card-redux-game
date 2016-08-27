@@ -17,7 +17,7 @@ app.post('/api/game/new', (req, res) => {
     res.json({
       gameId: uuid.v4(),
     });
-  }, 5000);
+  }, 1000);
 });
 
 const compiler = webpack(config);
