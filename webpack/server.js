@@ -8,6 +8,13 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
+function newGame(opponentName, isStarting) {
+  return {
+    opponentName,
+    isStarting,
+  };
+}
+
 const port = 3000;
 
 app.post('/api/game/new', (req, res) => {
@@ -31,8 +38,21 @@ app.use(webpackMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
+const clients = [];
+
 server.listen(port, 'localhost', (error) => {
   io.on('connection', (socket) => {
+    clients.push(socket.id);
+
+    console.log('Has more than two players connected?', io.engine.clientsCount > 1);
+    if (io.engine.clientsCount > 1) {
+      const playerOneStarts = Math.random() >= 0.5;
+      const [playerOne, playerTwo] = clients;
+
+      io.in(playerOne).emit('newGame', newGame('GuardianBanana', playerOneStarts));
+      io.in(playerTwo).emit('newGame', newGame('Boyd', !playerOneStarts));
+    }
+
     socket.on('action', (payload) => {
       let newAction = payload.action;
       console.log('********');
