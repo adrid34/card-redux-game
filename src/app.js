@@ -4,6 +4,7 @@ import socketClient from 'socket.io-client';
 
 import configureStore from 'redux/configureStore';
 import dispatchServerActions from 'redux/utils/dispatchServerActions';
+import dispatchNewGameAction from 'redux/utils/dispatchNewGameAction';
 // import { newGame } from 'redux/modules/game';
 
 import { Root } from './containers';
@@ -16,6 +17,7 @@ if (module.hot) {
 const socket = socketClient('http://localhost:3000');
 const store = configureStore(undefined, socket);
 dispatchServerActions(store, socket);
+dispatchNewGameAction(store, socket);
 
 // store.dispatch(newGame({
 //   yourName: 'Inooid',
