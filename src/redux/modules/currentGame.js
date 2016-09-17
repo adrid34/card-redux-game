@@ -5,6 +5,7 @@ const NEW_GAME_REQUEST = 'NEW_GAME_REQUEST';
 const NEW_GAME_SUCCESS = 'NEW_GAME_SUCCESS';
 const NEW_GAME_FAILURE = 'NEW_GAME_FAILURE';
 const UPDATE_HAS_OPPONENT = 'UPDATE_HAS_OPPONENT';
+const RESET_CURRENT_GAME = 'RESET_CURRENT_GAME';
 
 function newGameRequest() {
   return { type: NEW_GAME_REQUEST };
@@ -61,6 +62,12 @@ export function updateHasOpponent(hasOpponent) {
   };
 }
 
+export function resetCurrentGame() {
+  return {
+    type: RESET_CURRENT_GAME,
+  };
+}
+
 const initialState = record({
   loading: false,
   gameId: '',
@@ -87,6 +94,8 @@ export default function currentGameReducer(state = initialState(), action) {
       return state.merge({
         hasOpponent: action.hasOpponent,
       });
+    case RESET_CURRENT_GAME:
+      return initialState;
     default:
       return state;
   }
