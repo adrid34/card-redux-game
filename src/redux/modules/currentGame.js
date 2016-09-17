@@ -4,6 +4,7 @@ import { checkSuccessStatus, toJSON } from 'redux/utils/api';
 const NEW_GAME_REQUEST = 'NEW_GAME_REQUEST';
 const NEW_GAME_SUCCESS = 'NEW_GAME_SUCCESS';
 const NEW_GAME_FAILURE = 'NEW_GAME_FAILURE';
+const UPDATE_HAS_OPPONENT = 'UPDATE_HAS_OPPONENT';
 
 function newGameRequest() {
   return { type: NEW_GAME_REQUEST };
@@ -53,6 +54,13 @@ export function joinGame(gameId) {
   return newGameSuccess({ gameId });
 }
 
+export function updateHasOpponent(hasOpponent) {
+  return {
+    hasOpponent,
+    type: UPDATE_HAS_OPPONENT,
+  };
+}
+
 const initialState = record({
   loading: false,
   gameId: '',
@@ -74,6 +82,10 @@ export default function currentGameReducer(state = initialState(), action) {
         loading: false,
         gameId: '',
         errors: action.errors,
+      });
+    case UPDATE_HAS_OPPONENT:
+      return state.merge({
+        hasOpponent: action.hasOpponent,
       });
     default:
       return state;
