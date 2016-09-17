@@ -8,18 +8,11 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
-function newGame(opponentName, isStarting) {
-  return {
-    opponentName,
-    isStarting,
-  };
-}
+const { newGame, lengthOfRoom, clientsForRoom, isClientInRoom } = require('./utils');
 
 const port = 3000;
 
 app.post('/api/game/new', (req, res) => {
-  console.log(req.body);
-
   setTimeout(() => {
     res.json({
       gameId: uuid.v4(),
@@ -38,43 +31,52 @@ app.use(webpackMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-const clients = [];
-
 server.listen(port, 'localhost', (error) => {
   io.on('connection', (socket) => {
-    clients.push(socket.id);
+    socket.on('gameJoin', ({ gameId }) => {
+      const getPlayerCount = () => lengthOfRoom(io, gameId);
 
-    console.log('Has more than two players connected?', io.engine.clientsCount > 1);
-    if (io.engine.clientsCount > 1) {
-      const playerOneStarts = Math.random() >= 0.5;
-      const [playerOne, playerTwo] = clients;
+      if (getPlayerCount() === 2) return;
 
-      io.in(playerOne).emit('newGame', newGame('GuardianBanana', playerOneStarts));
-      io.in(playerTwo).emit('newGame', newGame('Boyd', !playerOneStarts));
-    }
+      socket.join(gameId);
+      io.to(gameId).emit('playerJoined', { playerCount: getPlayerCount() });
 
-    socket.on('action', (payload) => {
-      let newAction = payload.action;
-      console.log('********');
-      console.log('Payload BEFORE', newAction);
+      console.log('[GAMEJOIN] Current players:', clientsForRoom(io, gameId));
 
-      if (payload.action.target || payload.action.source) {
-        newAction = Object.assign({}, newAction, {
-          source: payload.action.source === 'PLAYER' ? 'OPPONENT' : 'PLAYER',
-          target: payload.action.target === 'PLAYER' ? 'OPPONENT' : 'PLAYER',
+      if (getPlayerCount() === 2) {
+        console.log('[GAMEJOIN] [START] Time to start the game', gameId);
+        const playerOneStarts = Math.random() >= 0.5;
+        const [playerOne, playerTwo] = clientsForRoom(io, gameId);
+
+        io.to(playerOne).emit('newGame', newGame(gameId, 'GuardianBanana', playerOneStarts));
+        io.to(playerTwo).emit('newGame', newGame(gameId, 'Boyd', !playerOneStarts));
+      }
+    });
+
+    // TODO: implment in client and notify other players
+    socket.on('gameLeave', (gameId) => {
+      socket.leave(gameId);
+    });
+
+    socket.on('action', ({ gameId, action }) => {
+      console.log('[ACTION] current clients:', clientsForRoom(io, gameId));
+      console.log('[ACTION] Current action from:',
+                  `Player${clientsForRoom(io, gameId).indexOf(socket.id) + 1}`);
+
+      // Validate if player is actually part of this game.
+      if (!isClientInRoom(io, gameId, socket.id)) return;
+
+      let newAction = action;
+      if (action.target || action.source) {
+        newAction = Object.assign({}, action, {
+          source: action.source === 'PLAYER' ? 'OPPONENT' : 'PLAYER',
+          target: action.target === 'PLAYER' ? 'OPPONENT' : 'PLAYER',
         });
       }
 
-      if (payload.action.card) {
-        console.log('--------------');
-        console.log('typeof card', typeof payload.action.card);
-        console.log('--------------');
-      }
-
-      console.log('Payload AFTER', newAction);
-      console.log('********');
-
-      socket.broadcast.emit('action', { action: newAction });
+      console.log('[ACTION] Broadcasting an action to:', gameId);
+      console.log('[ACTION] Action being sent is:', newAction);
+      socket.broadcast.to(gameId).emit('action', { action: newAction });
     });
   });
 
