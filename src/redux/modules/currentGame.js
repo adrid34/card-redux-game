@@ -46,6 +46,10 @@ export function fetchNewGame(force = false) {
   };
 }
 
+export function joinGame(gameId) {
+  return newGameSuccess({ gameId });
+}
+
 const initialState = record({
   loading: false,
   gameId: '',
