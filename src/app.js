@@ -26,6 +26,6 @@ dispatchNewGameAction(store, socket);
 // }));
 
 ReactDOM.render(
-  <Root store={store} />,
+  <Root store={store} socket={socket} />,
   document.getElementById('app')
 );
