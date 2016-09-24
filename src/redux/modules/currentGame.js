@@ -4,6 +4,8 @@ import { checkSuccessStatus, toJSON } from 'redux/utils/api';
 const NEW_GAME_REQUEST = 'NEW_GAME_REQUEST';
 const NEW_GAME_SUCCESS = 'NEW_GAME_SUCCESS';
 const NEW_GAME_FAILURE = 'NEW_GAME_FAILURE';
+const UPDATE_HAS_OPPONENT = 'UPDATE_HAS_OPPONENT';
+const RESET_CURRENT_GAME = 'RESET_CURRENT_GAME';
 
 function newGameRequest() {
   return { type: NEW_GAME_REQUEST };
@@ -41,8 +43,28 @@ export function fetchNewGame(force = false) {
     return fetch('http://localhost:3000/api/game/new', { method: 'post' })
       .then(checkSuccessStatus)
       .then(toJSON)
-      .then(json => { dispatch(newGameSuccess(json)); })
+      .then(json => {
+        dispatch(newGameSuccess(json));
+        return json.gameId;
+      })
       .catch(errors => { dispatch(newGameFailure({ errors })); });
+  };
+}
+
+export function joinGame(gameId) {
+  return newGameSuccess({ gameId });
+}
+
+export function updateHasOpponent(hasOpponent) {
+  return {
+    hasOpponent,
+    type: UPDATE_HAS_OPPONENT,
+  };
+}
+
+export function resetCurrentGame() {
+  return {
+    type: RESET_CURRENT_GAME,
   };
 }
 
@@ -68,6 +90,12 @@ export default function currentGameReducer(state = initialState(), action) {
         gameId: '',
         errors: action.errors,
       });
+    case UPDATE_HAS_OPPONENT:
+      return state.merge({
+        hasOpponent: action.hasOpponent,
+      });
+    case RESET_CURRENT_GAME:
+      return initialState;
     default:
       return state;
   }

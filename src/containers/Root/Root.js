@@ -9,6 +9,16 @@ import sharedStyles from 'components/shared/styles.scss';
 export default class Root extends Component {
   static propTypes = {
     store: PropTypes.object,
+    socket: PropTypes.object,
+  }
+
+  constructor(props) {
+    super(props);
+    this.withSocket = this.withSocket.bind(this);
+  }
+
+  withSocket(component) {
+    return (props) => React.createElement(component, { socket: this.props.socket, ...props });
   }
 
   render() {
@@ -21,7 +31,7 @@ export default class Root extends Component {
             <Route path="/" component={App}>
               <IndexRoute component={StartScreen} />
               <Route path="game">
-                <Route path="new" component={GameNewScreen} />
+                <Route path="new" component={this.withSocket(GameNewScreen)} />
                 <Route path=":id" component={GameScreen} />
               </Route>
             </Route>
