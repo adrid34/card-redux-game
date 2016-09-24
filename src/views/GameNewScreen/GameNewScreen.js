@@ -102,7 +102,10 @@ export class GameNewScreen extends Component {
           <div style={{ margin: 20 }}>
             <p>Hey dude, send this link to your friend 😁</p>
             <div style={{ backgroundColor: 'lightgray', padding: 20 }}>
-              { loading ? 'regenerating...' : `${protocol}//${host}/${createHref(`/game/${gameId}`)}` }
+              { loading ?
+                'regenerating...' :
+                `${protocol}//${host}/${createHref(`/game/${gameId}`)}`
+              }
             </div>
             <button onClick={this.fetchNewGame}>Regenerate URL</button>
             <button onClick={this.openAlert}>Join specific game</button>
