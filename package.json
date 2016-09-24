@@ -1,6 +1,6 @@
 {
-  "name": "cards",
-  "version": "1.0.0",
+  "name": "react-redux-card-game",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Boyd Dames",
+  "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
     "express": "^4.14.0",
