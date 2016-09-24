@@ -4,6 +4,7 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  port: 3000,
   context: path.resolve(__dirname, '..'),
   entry: [
     path.join(__dirname, '..', 'src', 'app.js'),
