@@ -21,9 +21,7 @@ export class GameScreen extends Component {
   }
 
   render() {
-    return (
-      <Board />
-    );
+    return <Board />;
   }
 }
 
