@@ -82,7 +82,6 @@ export class GameNewScreen extends Component {
 
   openAlert() {
     const gameId = prompt('What game do you want to join?');
-    console.log('filled in gameId', gameId);
 
     if (gameId) {
       this.joinNewGame(gameId);
