@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 export App from './App/App';
 export DevTools from './DevTools/DevTools';
 export Board from './Board/Board';

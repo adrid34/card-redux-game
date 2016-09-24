@@ -5,6 +5,8 @@ import { List } from 'immutable';
 import { MinionDropTarget } from 'containers';
 import { MinionsOnBoard } from 'components';
 
+import sharedStyles from 'components/shared/styles.scss';
+
 export class BoardSideDropTarget extends Component {
   static propTypes = {
     board: PropTypes.instanceOf(List),
@@ -24,7 +26,6 @@ export class BoardSideDropTarget extends Component {
       connectDropTarget,
       playCard,
     } = this.props;
-    const sharedStyles = require('components/shared/styles.scss');
 
     const minions = board.map((card, index) => (
       <MinionDropTarget

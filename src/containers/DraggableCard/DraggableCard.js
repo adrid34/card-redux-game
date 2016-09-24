@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import { CardModel } from 'redux/modules/card';
 import { Card } from 'components';
 
+import styles from 'components/Card/Card.scss';
+
 export class DraggableCard extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
@@ -24,7 +26,6 @@ export class DraggableCard extends Component {
 
   render() {
     const { connectDragSource, isDragging, canDrag, card, className } = this.props;
-    const styles = require('./../../components/Card/Card.scss');
     const newClass = classNames(className, {
       [styles.CardCanDrag]: canDrag,
     });

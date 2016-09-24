@@ -8,8 +8,12 @@ import sharedStyles from 'components/shared/styles.scss';
 
 export default class Root extends Component {
   static propTypes = {
-    store: PropTypes.object,
-    socket: PropTypes.object,
+    store: PropTypes.shape({
+      getState: PropTypes.func.isRequired,
+    }).isRequired,
+    socket: PropTypes.shape({
+      on: PropTypes.func.isRequired,
+    }).isRequired,
   }
 
   constructor(props) {
@@ -18,7 +22,7 @@ export default class Root extends Component {
   }
 
   withSocket(component) {
-    return (props) => React.createElement(component, { socket: this.props.socket, ...props });
+    return props => React.createElement(component, { socket: this.props.socket, ...props });
   }
 
   render() {

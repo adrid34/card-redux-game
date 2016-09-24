@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { DragLayer as dragLayer } from 'react-dnd';
 import { Minion, Card } from 'components';
+import { CardModel } from 'redux/modules/card';
 
 const layerStyles = {
   position: 'fixed',
@@ -30,7 +31,9 @@ function getItemStyles(props) {
 
 class CustomDragLayer extends Component {
   static propTypes = {
-    item: PropTypes.object,
+    item: PropTypes.shape({
+      card: PropTypes.instanceOf(CardModel),
+    }),
     itemType: PropTypes.string,
     currentOffset: PropTypes.shape({
       x: PropTypes.number.isRequired,

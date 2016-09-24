@@ -4,6 +4,8 @@ import { DragSource as dragSource } from 'react-dnd';
 import { CardModel } from 'redux/modules/card';
 import { Minion } from 'components';
 
+import sharedStyles from 'components/shared/styles.scss';
+
 export class DraggableMinion extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
@@ -21,7 +23,6 @@ export class DraggableMinion extends Component {
 
   render() {
     const { connectDragSource, isDragging, card, exhausted } = this.props;
-    const sharedStyles = require('components/shared/styles.scss');
 
     return connectDragSource(
       <div className={sharedStyles.fullHeight} style={{ opacity: isDragging ? 0 : 1 }}>

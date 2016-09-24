@@ -43,11 +43,11 @@ export function fetchNewGame(force = false) {
     return fetch('http://localhost:3000/api/game/new', { method: 'post' })
       .then(checkSuccessStatus)
       .then(toJSON)
-      .then(json => {
+      .then((json) => {
         dispatch(newGameSuccess(json));
         return json.gameId;
       })
-      .catch(errors => { dispatch(newGameFailure({ errors })); });
+      .catch((errors) => { dispatch(newGameFailure({ errors })); });
   };
 }
 

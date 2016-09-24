@@ -1,7 +1,24 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "env": {
+    "browser": true,
+  },
   "rules": {
     "react/prefer-stateless-function": 1,
+    "react/require-extension": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // https://github.com/yannickcr/eslint-plugin-react/issues/861
+    "react/no-unused-prop-types": 0,
+    // until we've fixed using refs instead of using findDOMNode
+    // Possible solution: https://github.com/gaearon/react-dnd/issues/329
+    "react/no-find-dom-node": 1,
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack/webpack.config.js"
+      }
+    }
   },
 }

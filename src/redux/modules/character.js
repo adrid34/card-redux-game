@@ -1,5 +1,5 @@
-import { HIT_FACE } from './minion';
 import { Record } from 'immutable';
+import { HIT_FACE } from './minion';
 
 const ADD_MAX_MANA = 'ADD_MANA';
 const ADD_SPENDABLE_MANA = 'ADD_SPENDABLE_MANA';
@@ -32,7 +32,7 @@ export function fillMaxMana({ target, fromServer }) {
 }
 
 export function addAndFillMana({ target, fromServer }) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addMaxMana({ target, fromServer }));
     dispatch(fillMaxMana({ target, fromServer }));
   };

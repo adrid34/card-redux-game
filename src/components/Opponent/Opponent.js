@@ -3,9 +3,10 @@ import { List } from 'immutable';
 import { TargetableHero, TargetableMinion } from 'containers';
 import { OpponentHand, MinionsOnBoard, BoardSide } from 'components';
 
+import styles from './Opponent.scss';
+
 const Opponent = ({ name, character, handCount, board, actions }) => {
   const { mana, health } = character;
-  const styles = require('./Opponent.scss');
 
   const minions = board.map((card, index) => (
     <TargetableMinion key={index} index={index} card={card} attackMinion={actions.attackMinion} />
