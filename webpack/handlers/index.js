@@ -1,9 +1,3 @@
-const onGameJoinHandler = require('./onGameJoin');
-const onGameLeaveHandler = require('./onGameLeave');
-const onActionHandler = require('./onAction');
-
-module.exports = {
-  onGameJoinHandler,
-  onGameLeaveHandler,
-  onActionHandler,
-};
+exports.onGameJoinHandler = require('./onGameJoin');
+exports.onGameLeaveHandler = require('./onGameLeave');
+exports.onActionHandler = require('./onAction');
