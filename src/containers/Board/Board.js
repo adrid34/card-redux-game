@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -11,21 +11,19 @@ import { playCardWithCost } from 'redux/modules/hand';
 import { hitFace, attackMinion } from 'redux/modules/minion';
 import { Player, PlayerSide, Opponent } from 'components';
 
-export const Board = ({ yourTurn, player, opponent, actions }) => {
-  const styles = require('./Board.scss');
+import styles from './Board.scss';
 
-  return (
-    <div className={styles.Board}>
-      <PlayerSide>
-        <Opponent {...opponent} opponentsTurn={!yourTurn} actions={actions} />
-      </PlayerSide>
-      <PlayerSide>
-        <Player {...player} yourTurn={yourTurn} actions={actions} />
-      </PlayerSide>
-      <button onClick={actions.endTurn} disabled={!yourTurn}>End turn</button>
-    </div>
-  );
-};
+export const Board = ({ yourTurn, player, opponent, actions }) => (
+  <div className={styles.Board}>
+    <PlayerSide>
+      <Opponent {...opponent} opponentsTurn={!yourTurn} actions={actions} />
+    </PlayerSide>
+    <PlayerSide>
+      <Player {...player} yourTurn={yourTurn} actions={actions} />
+    </PlayerSide>
+    <button onClick={actions.endTurn} disabled={!yourTurn}>End turn</button>
+  </div>
+);
 
 Board.propTypes = {
   yourTurn: PropTypes.bool.isRequired,
@@ -43,18 +41,21 @@ Board.propTypes = {
   }),
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   yourTurn: state.yourTurn,
-  player: Object.assign({}, state.player, {
+  player: {
+    ...state.player,
     board: boardSelector(state, 'player'),
     exhaustedMinionIds: state.player.board.exhaustedMinionIds,
-  }),
-  opponent: Object.assign({}, state.opponent, {
+  },
+  opponent: {
+    ...state.opponent,
     board: boardSelector(state, 'opponent'),
     exhaustedMinionIds: state.player.board.exhaustedMinionIds,
-  }),
+  },
 });
-const mapDispatchToProps = (dispatch) => ({
+
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     playCardWithCost,
     drawCard,
@@ -64,6 +65,7 @@ const mapDispatchToProps = (dispatch) => ({
   }, dispatch),
 });
 
-export default dragDropContext(HTML5Backend)(
-  connect(mapStateToProps, mapDispatchToProps)(Board)
-);
+export default compose(
+  dragDropContext(HTML5Backend),
+  connect(mapStateToProps, mapDispatchToProps),
+)(Board);

@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
+import cardStyles from './../Card/Card.scss';
+import cardBackStyles from './CardBack.scss';
+
 const CardBack = ({ margin, className }) => {
-  const cardStyles = require('./../Card/Card.scss');
-  const cardBackStyles = require('./CardBack.scss');
   const marginStyle = `-${margin}px`;
   const classes = classnames(cardStyles.Card, cardBackStyles.CardBackDefault, className);
 

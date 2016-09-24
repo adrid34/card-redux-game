@@ -46,7 +46,7 @@ export function attackMinion({ target, targetMinion, source, sourceMinion }) {
 }
 
 export function hitFace({ source, sourceMinionId, target, damage }) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(exhaustMinion({ source, minionId: sourceMinionId }));
     dispatch({ target, damage, type: HIT_FACE });
   };

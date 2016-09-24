@@ -1,13 +1,17 @@
 const app = require('express')();
-const server = require('http').Server(app); // eslint-disable-line
+const server = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(server);
 
+/* eslint-disable import/no-extraneous-dependencies, import/newline-after-import */
+// Will be fixed when there is a seperate production server.
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
+/* eslint-enable */
 
+const { bindSocket } = require('./utils');
 const game = require('./routes/api/game');
 const {
   onGameJoinHandler,
@@ -32,11 +36,11 @@ app.use(webpackHotMiddleware(compiler));
 // - Server launch ------------------------------------------------------------/
 server.listen(config.port, 'localhost', (error) => {
   io.on('connection', (socket) => {
-    const bindSocket = require('./utils').bindSocket(io, socket);
+    const bindSocketCurried = bindSocket(io, socket);
 
-    socket.on('gameJoin', bindSocket(onGameJoinHandler));
-    socket.on('gameLeave', bindSocket(onGameLeaveHandler));
-    socket.on('action', bindSocket(onActionHandler));
+    socket.on('gameJoin', bindSocketCurried(onGameJoinHandler));
+    socket.on('gameLeave', bindSocketCurried(onGameLeaveHandler));
+    socket.on('action', bindSocketCurried(onActionHandler));
   });
 
   /* eslint-disable no-console */

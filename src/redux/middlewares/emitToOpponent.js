@@ -1,5 +1,5 @@
 export default function curryEmitToOpponent(socket) {
-  return store => next => action => {
+  return store => next => (action) => {
     const { gameId, hasOpponent } = store.getState().currentGame;
 
     if (!action.fromServer && gameId && hasOpponent) {

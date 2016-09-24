@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { persistState } from 'redux-devtools';
+import { persistState } from 'redux-devtools'; // eslint-disable-line import/no-extraneous-dependencies
 
 import emitToOpponent from 'redux/middlewares/emitToOpponent';
 import rootReducer from 'redux/modules/rootReducer';
@@ -21,7 +21,7 @@ export default function configureStore(initialState, socket) {
 
   if (module.hot) {
     module.hot.accept('./modules/rootReducer', () => (
-      store.replaceReducer(require('./modules/rootReducer').default)
+      store.replaceReducer(require('./modules/rootReducer').default) // eslint-disable-line global-require
     ));
   }
 

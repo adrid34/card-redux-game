@@ -3,7 +3,8 @@ import { findDOMNode } from 'react-dom';
 import { DropTarget as dropTarget } from 'react-dnd';
 import { CardModel } from 'redux/modules/card';
 import { DraggableMinion } from 'containers';
-// import { Minion } from 'components';
+
+import sharedStyles from 'components/shared/styles.scss';
 
 export class MinionDropTarget extends Component {
   static propTypes = {
@@ -19,7 +20,6 @@ export class MinionDropTarget extends Component {
 
   render() {
     const { yourTurn, connectDropTarget, card, exhausted } = this.props;
-    const sharedStyles = require('components/shared/styles.scss');
 
     return connectDropTarget(
       <div className={sharedStyles.fullHeight}>

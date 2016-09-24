@@ -3,19 +3,19 @@ import classNames from 'classnames';
 import { List } from 'immutable';
 import { DraggableCard } from 'containers';
 
+import styles from './Hand.scss';
+import cardStyles from '../Card/Card.scss';
+
 function hasEnoughMana(card, spendableMana) {
   return card.mana <= spendableMana;
 }
 
 const Hand = ({ yourTurn, spendableMana, cards }) => {
-  const styles = require('./Hand.scss');
-  const cardStyles = require('./../Card/Card.scss');
-
   const cardsLength = cards.size;
   const cardList = cards.map((card, index) => {
     const cardClasses = classNames(cardStyles.CardYours, {
       [cardStyles[`CardTotal-${cardsLength}`]]: cardsLength,
-      [cardStyles[`CardNumber-${index + 1}-of-${cardsLength}`]]: (typeof index !== undefined),
+      [cardStyles[`CardNumber-${index + 1}-of-${cardsLength}`]]: (typeof index !== 'undefined'),
     });
     const canDrag = yourTurn && hasEnoughMana(card, spendableMana);
 

@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component, PropTypes } from 'react';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
@@ -6,7 +7,9 @@ import { Board } from 'containers';
 
 export class GameScreen extends Component {
   static propTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     currentGame: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       gameId: PropTypes.string.isRequired,

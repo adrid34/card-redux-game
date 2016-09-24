@@ -9,9 +9,18 @@ import {
   fetchNewGame,
 } from 'redux/modules/currentGame';
 
+const imageUrl = 'http://chimplyimage.appspot.com/images/samples/classic-spinner/animatedCircle.gif';
+
+function emitGameJoin(socket, gameId) {
+  socket.emit('gameJoin', { gameId });
+}
+
 export class GameNewScreen extends Component {
   static propTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.shape({
+      createHref: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     joinGame: PropTypes.func.isRequired,
     fetchNewGame: PropTypes.func.isRequired,
     updateHasOpponent: PropTypes.func.isRequired,
@@ -20,7 +29,10 @@ export class GameNewScreen extends Component {
       gameId: PropTypes.string.isRequired,
       hasOpponent: PropTypes.bool.isRequired,
     }).isRequired,
-    socket: PropTypes.object,
+    socket: PropTypes.shape({
+      emit: PropTypes.func.isRequired,
+      on: PropTypes.func.isRequired,
+    }).isRequired,
   }
 
   constructor(props) {
@@ -35,8 +47,8 @@ export class GameNewScreen extends Component {
   componentDidMount() {
     const { socket } = this.props;
 
-    this.props.fetchNewGame(true).then(gameId => {
-      this.emitGameJoin(socket, gameId);
+    this.props.fetchNewGame(true).then((gameId) => {
+      emitGameJoin(socket, gameId);
     });
   }
 
@@ -46,10 +58,6 @@ export class GameNewScreen extends Component {
     if (gameId !== nextProps.currentGame.gameId) {
       this.addGameJoinedEventHandler(nextProps.currentGame.gameId);
     }
-  }
-
-  emitGameJoin(socket, gameId) {
-    socket.emit('gameJoin', { gameId });
   }
 
   addGameJoinedEventHandler(gameId) {
@@ -71,7 +79,7 @@ export class GameNewScreen extends Component {
     const { socket } = this.props;
 
     this.props.joinGame(gameId);
-    this.emitGameJoin(socket, gameId);
+    emitGameJoin(socket, gameId);
   }
 
   goInGame(gameId) {
@@ -95,7 +103,7 @@ export class GameNewScreen extends Component {
 
     return (
       <div>
-        <p>Loading: { loading ? <img src="http://chimplyimage.appspot.com/images/samples/classic-spinner/animatedCircle.gif" style={{ width: '16px', height: '16px' }} /> : 'no' }</p>
+        <p>Loading: { loading ? <img src={imageUrl} style={{ width: '16px', height: '16px' }} alt="Loading..." /> : 'no' }</p>
         <p>found opponent? { hasOpponent ? 'yes' : 'no' }</p>
         { gameId ? (
           <div style={{ margin: 20 }}>

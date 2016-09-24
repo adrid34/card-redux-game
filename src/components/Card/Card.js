@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { CardModel } from 'redux/modules/card';
 
+import styles from './Card.scss';
+
 const Card = ({ card, className, isDragging }) => {
   const { name, mana, attack, defense, portrait } = card;
-  const styles = require('./Card.scss');
   const cardClass = classNames(styles.Card, {
     [styles.CardIsDragging]: isDragging,
     [className]: className,
