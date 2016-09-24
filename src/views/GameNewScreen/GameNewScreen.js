@@ -3,7 +3,11 @@ import { withRouter } from 'react-router';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { updateHasOpponent, joinGame, fetchNewGame } from 'redux/modules/currentGame';
+import {
+  updateHasOpponent,
+  joinGame,
+  fetchNewGame,
+} from 'redux/modules/currentGame';
 
 export class GameNewScreen extends Component {
   static propTypes = {
