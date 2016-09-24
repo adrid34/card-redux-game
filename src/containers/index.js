@@ -1,3 +1,4 @@
+export App from './App/App';
 export DevTools from './DevTools/DevTools';
 export Board from './Board/Board';
 export BoardSideDropTarget from './BoardSideDropTarget/BoardSideDropTarget';
@@ -5,5 +6,6 @@ export CustomDragLayer from './CustomDragLayer/CustomDragLayer';
 export DraggableCard from './DraggableCard/DraggableCard';
 export DraggableMinion from './DraggableMinion/DraggableMinion';
 export MinionDropTarget from './MinionDropTarget/MinionDropTarget';
+export Root from './Root/Root';
 export TargetableHero from './TargetableHero/TargetableHero';
 export TargetableMinion from './TargetableMinion/TargetableMinion';

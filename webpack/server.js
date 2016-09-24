@@ -6,10 +6,19 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
-
-const port = 3000;
-
 const compiler = webpack(config);
+
+const game = require('./routes/api/game');
+const {
+  onGameJoinHandler,
+  onGameLeaveHandler,
+  onActionHandler,
+} = require('./handlers');
+
+// - Routes -------------------------------------------------------------------/
+app.post('/api/game/new', game.generateNewGameId);
+
+// - Middlewares --------------------------------------------------------------/
 app.use(webpackMiddleware(compiler, {
   hot: true,
   filename: config.output.filename,
@@ -20,36 +29,22 @@ app.use(webpackMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-server.listen(port, 'localhost', (error) => {
+// - Server launch ------------------------------------------------------------/
+server.listen(config.port, 'localhost', (error) => {
   io.on('connection', (socket) => {
-    socket.on('action', (payload) => {
-      let newAction = payload.action;
-      console.log('********');
-      console.log('Payload BEFORE', newAction);
+    const bindSocket = require('./utils').bindSocket(io, socket);
 
-      if (payload.action.target || payload.action.source) {
-        newAction = Object.assign({}, newAction, {
-          source: payload.action.source === 'PLAYER' ? 'OPPONENT' : 'PLAYER',
-          target: payload.action.target === 'PLAYER' ? 'OPPONENT' : 'PLAYER',
-        });
-      }
-
-      if (payload.action.card) {
-        console.log('--------------');
-        console.log('typeof card', typeof payload.action.card);
-        console.log('--------------');
-      }
-
-      console.log('Payload AFTER', newAction);
-      console.log('********');
-
-      socket.broadcast.emit('action', { action: newAction });
-    });
+    socket.on('gameJoin', bindSocket(onGameJoinHandler));
+    socket.on('gameLeave', bindSocket(onGameLeaveHandler));
+    socket.on('action', bindSocket(onActionHandler));
   });
 
+  /* eslint-disable no-console */
   if (error) {
     console.error(error);
   } else {
-    console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
+    console.info(`==> 🌎  Listening on port ${config.port}. ` +
+                 `Open up http://localhost:${config.port}/ in your browser.`);
   }
+  /* eslint-enable no-console */
 });

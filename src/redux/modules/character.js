@@ -6,10 +6,11 @@ const ADD_SPENDABLE_MANA = 'ADD_SPENDABLE_MANA';
 const FILL_MAX_MANA = 'FILL_MAX_MANA';
 const SPEND_MANA = 'SPEND_MANA';
 
-export function addMaxMana({ target, amount = 1 }) {
+export function addMaxMana({ target, fromServer, amount = 1 }) {
   return {
     target,
     amount,
+    fromServer,
     type: ADD_MAX_MANA,
   };
 }
@@ -22,17 +23,18 @@ export function addSpendableMana({ target, amount = 1 }) {
   };
 }
 
-export function fillMaxMana({ target }) {
+export function fillMaxMana({ target, fromServer }) {
   return {
     target,
+    fromServer,
     type: FILL_MAX_MANA,
   };
 }
 
-export function addAndFillMana({ target }) {
+export function addAndFillMana({ target, fromServer }) {
   return dispatch => {
-    dispatch(addMaxMana({ target }));
-    dispatch(fillMaxMana({ target }));
+    dispatch(addMaxMana({ target, fromServer }));
+    dispatch(fillMaxMana({ target, fromServer }));
   };
 }
 
