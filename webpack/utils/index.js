@@ -1,3 +1,9 @@
+const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
+
+exports.createLogger = function createLogger(prefix, color) {
+  return console.log.bind(console, `[${chalk[color](prefix)}]`);
+};
+
 exports.newGame = function newGame(gameId, opponentName, isStarting) {
   return {
     gameId,
@@ -39,5 +45,5 @@ exports.isClientInRoom = function isClientInRoom(io, roomName, clientId) {
  * @return {Function} function that takes a function argument that will receive the socket binding
  */
 exports.bindSocket = function bindSocket(io, socket) {
-  return (functionHandler) => functionHandler.bind({ io, socket });
+  return functionHandler => functionHandler.bind({ io, socket });
 };
