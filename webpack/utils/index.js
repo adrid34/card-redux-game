@@ -1,3 +1,9 @@
+const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
+
+exports.createLogger = function createLogger(prefix, color) {
+  return console.log.bind(console, `[${chalk[color](prefix)}]`);
+};
+
 exports.newGame = function newGame(gameId, opponentName, isStarting) {
   return {
     gameId,
