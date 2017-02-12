@@ -1,62 +1,77 @@
 const webpack = require('webpack');
 const path = require('path');
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer'); // eslint-disable-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const paths = {
+  root: path.join(__dirname, '..'),
+  src: path.join(__dirname, '..', 'src'),
+  dist: path.join(__dirname, '..', 'dist'),
+};
+
 module.exports = {
-  port: 3000,
-  context: path.resolve(__dirname, '..'),
+  context: paths.root,
+  devtool: 'cheap-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
     'webpack/hot/dev-server',
-    path.join(__dirname, '..', 'src', 'app.js'),
+    path.join(paths.src, 'app.js'),
   ],
   output: {
-    path: path.join(__dirname, '..', 'dist'),
+    path: paths.dist,
     filename: 'bundle.js',
     publicPath: '/',
   },
   resolve: {
-    modulesDirectories: ['src', 'node_modules'],
-    extensions: ['', '.json', '.js', '.jsx'],
+    modules: ['src', 'node_modules'],
+    extensions: ['.json', '.js', '.jsx'],
   },
   module: {
-    preLoaders: [
+    rules: [
       {
+        enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'eslint',
-      },
-    ],
-    loaders: [
-      {
+        loader: 'eslint-loader',
+      }, {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
+        loader: 'babel-loader',
+        options: {
           cacheDirectory: true,
         },
       }, {
         test: /\.scss$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]',
-          'postcss',
-          'sass',
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 2,
+              sourceMap: true,
+              localIdentName: '[local]___[hash:base64:5]',
+            },
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => ([
+                autoprefixer({ browsers: ['last 2 versions'] }),
+              ]),
+            },
+          }, {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true,
+            },
+          },
         ],
       },
     ],
   },
-  postcss: () => [
-    autoprefixer({ browsers: ['last 2 versions'] }),
-  ],
-  sass: () => ({
-    outputStyle: 'expanded',
-    sourceMap: true,
-  }),
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],

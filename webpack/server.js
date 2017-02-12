@@ -2,6 +2,8 @@ const app = require('express')();
 const server = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(server);
 
+const port = 3000;
+
 /* eslint-disable import/no-extraneous-dependencies, import/newline-after-import */
 // Will be fixed when there is a seperate production server.
 const webpack = require('webpack');
@@ -34,7 +36,7 @@ app.use(webpackMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 // - Server launch ------------------------------------------------------------/
-server.listen(config.port, 'localhost', (error) => {
+server.listen(port, 'localhost', (error) => {
   io.on('connection', (socket) => {
     const bindSocketCurried = bindSocket(io, socket);
 
@@ -47,8 +49,8 @@ server.listen(config.port, 'localhost', (error) => {
   if (error) {
     console.error(error);
   } else {
-    console.info(`==> 🌎  Listening on port ${config.port}. ` +
-                 `Open up http://localhost:${config.port}/ in your browser.`);
+    console.info(`==> 🌎  Listening on port ${port}. ` +
+                 `Open up http://localhost:${port}/ in your browser.`);
   }
   /* eslint-enable no-console */
 });
