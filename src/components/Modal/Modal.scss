@@ -1,0 +1,20 @@
+.ModalOverlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.Modal {
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  max-width: 1000px;
+  outline: none;
+  padding: 20px;
+}

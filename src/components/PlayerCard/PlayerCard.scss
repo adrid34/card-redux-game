@@ -1,0 +1,22 @@
+.PlayerCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 30%;
+  height: 300px;
+  background: #ebebeb;
+}
+
+.PlayerCardAvatar {
+  width: 100px;
+  height: 100px;
+  background: orange;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.PlayerCardName {
+  font-size: 2em;
+}

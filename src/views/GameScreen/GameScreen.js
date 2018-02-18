@@ -17,12 +17,6 @@ export class GameScreen extends Component {
     }).isRequired,
   }
 
-  componentDidMount() {
-    if (!this.props.currentGame.gameId) {
-      this.props.router.push('/');
-    }
-  }
-
   render() {
     return <Board />;
   }

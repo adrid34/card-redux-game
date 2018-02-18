@@ -1,35 +1,39 @@
 const {
+  colors,
   createLogger,
-  newGame,
   lengthOfRoom,
   clientsForRoom,
 } = require('./../utils');
 
-const logGameJoin = createLogger('GAMEJOIN', 'cyan');
+const logGameJoin = createLogger('GAMEJOIN', colors.onGameJoin);
 
-function onGameJoin({ gameId }) {
+function onGameJoin({ gameId, name }) {
   const getPlayerCount = () => lengthOfRoom(this.io, gameId);
 
   if (getPlayerCount() === 2) return;
 
+  this.socket.username = name;
   this.socket.join(gameId);
-  this.io.to(gameId).emit('playerJoined', { gameId, playerCount: getPlayerCount() });
-
-  logGameJoin('Current players:', clientsForRoom(this.io, gameId));
+  this.io.to(gameId).emit('playerJoined', {
+    gameId,
+    name,
+    socketId: this.socket.id,
+    playerCount: getPlayerCount(),
+  });
 
   if (getPlayerCount() === 2) {
-    logGameJoin('[START] Time to start the game', gameId);
-    const playerOneStarts = Math.random() >= 0.5;
-    const [playerOne, playerTwo] = clientsForRoom(this.io, gameId);
+    const enemySocketId = clientsForRoom(this.io, gameId).find(id => id !== this.socket.id);
+    const enemyPlayerName = this.io.sockets.connected[enemySocketId].username;
 
-    const playerOneNewGame = newGame(gameId, 'GuardianBanana', playerOneStarts);
-    this.io.to(playerOne).emit('newGame', playerOneNewGame);
-    logGameJoin('[ACTION] Sent action to playerOne', playerOneNewGame);
-
-    const playerTwoNewGame = newGame(gameId, 'Boyd', !playerOneStarts);
-    this.io.to(playerTwo).emit('newGame', playerTwoNewGame);
-    logGameJoin('[ACTION] Sent action to playerTwo', playerTwoNewGame);
+    this.io.to(this.socket.id).emit('playerJoined', {
+      gameId,
+      name: enemyPlayerName,
+      socketId: enemySocketId,
+      playerCount: getPlayerCount(),
+    });
   }
+
+  logGameJoin('Current players:', clientsForRoom(this.io, gameId));
 }
 
 module.exports = onGameJoin;

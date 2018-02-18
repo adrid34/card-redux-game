@@ -1,0 +1,25 @@
+input,
+.input {
+  border: 0;
+}
+
+.input--group,
+.input--base {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.input--base,
+.input--group__input {
+  font-size: 14px;
+}
+
+.input--group {
+  display: flex;
+}
+
+.input--full {
+  width: 100%;
+}

@@ -3,11 +3,12 @@ import thunk from 'redux-thunk';
 import { persistState } from 'redux-devtools'; // eslint-disable-line import/no-extraneous-dependencies
 
 import emitToOpponent from 'redux/middlewares/emitToOpponent';
+import persistPlayerName from 'redux/middlewares/persistPlayerName';
 import rootReducer from 'redux/modules/rootReducer';
 import { DevTools } from 'containers';
 
 const enhancer = socket => compose(
-  applyMiddleware(thunk, emitToOpponent(socket)),
+  applyMiddleware(thunk, emitToOpponent(socket), persistPlayerName),
   DevTools.instrument(),
   persistState(
     window.location.href.match(

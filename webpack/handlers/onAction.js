@@ -1,6 +1,11 @@
-const { createLogger, clientsForRoom, isClientInRoom } = require('./../utils');
+const {
+  colors,
+  createLogger,
+  clientsForRoom,
+  isClientInRoom,
+} = require('./../utils');
 
-const logAction = createLogger('ACTION', 'green');
+const logAction = createLogger('ACTION', colors.onAction);
 
 function onAction({ gameId, opponentHandCount, action }) {
   logAction('current clients:', clientsForRoom(this.io, gameId));

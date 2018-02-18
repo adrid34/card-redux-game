@@ -1,0 +1,36 @@
+.Lobby {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LobbyInnerWrapper {
+  flex-grow: 1;
+}
+
+.LobbyVersus {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  height: 70%;
+}
+
+.LobbyReadyWrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.LobbyReadyButton {
+  width: 200px;
+  height: 45px;
+  background: orange;
+  color: #ffffff;
+  font-size: 1.2em;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}

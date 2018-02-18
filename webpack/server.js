@@ -16,9 +16,10 @@ const compiler = webpack(config);
 const { bindSocket } = require('./utils');
 const game = require('./routes/api/game');
 const {
+  onActionHandler,
   onGameJoinHandler,
   onGameLeaveHandler,
-  onActionHandler,
+  onGameStartHandler,
 } = require('./handlers');
 
 // - Routes -------------------------------------------------------------------/
@@ -42,6 +43,7 @@ server.listen(port, 'localhost', (error) => {
 
     socket.on('gameJoin', bindSocketCurried(onGameJoinHandler));
     socket.on('gameLeave', bindSocketCurried(onGameLeaveHandler));
+    socket.on('gameStart', bindSocketCurried(onGameStartHandler));
     socket.on('action', bindSocketCurried(onActionHandler));
   });
 

@@ -36,5 +36,8 @@ $ open http://localhost:3000
 Current progress:
 -----------------
 
-Updated: 27 June 2016
-![Current progress](https://cloud.githubusercontent.com/assets/1291263/16381610/a247a308-3c7d-11e6-8634-4c2b0ce4be62.gif)
+Updated: 18 February 2018
+
+[![status-2016-11-12_smaller](https://cloud.githubusercontent.com/assets/1291263/20240897/0f470ef8-a925-11e6-891a-2589e8735a12.gif)](https://gfycat.com/WindyIndelibleKawala)
+
+(Click on the image for a bigger version)

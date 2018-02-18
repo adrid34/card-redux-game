@@ -111,7 +111,7 @@ export class GameNewScreen extends Component {
             <div style={{ backgroundColor: 'lightgray', padding: 20 }}>
               { loading ?
                 'regenerating...' :
-                `${protocol}//${host}/${createHref(`/game/${gameId}`)}`
+                `${protocol}//${host}/${createHref(`/game/${gameId}/lobby`)}`
               }
             </div>
             <button onClick={this.fetchNewGame}>Regenerate URL</button>
