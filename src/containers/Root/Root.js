@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-import { App, DevTools, SocketProvider } from 'containers';
+import { App, SocketProvider } from 'containers';
 import { GameLobbyScreen, GameScreen, StartScreen } from 'views';
 import { fetchNewGame, joinGame } from 'redux/modules/currentGame';
 import sharedStyles from 'components/shared/styles.scss';
@@ -16,7 +16,7 @@ export default class Root extends Component {
     socket: PropTypes.shape({
       on: PropTypes.func.isRequired,
     }).isRequired,
-  }
+  };
 
   requireName = (nextState, replace) => {
     const { name } = this.props.store.getState().player;
@@ -27,11 +27,11 @@ export default class Root extends Component {
         query: { ref: nextState.location.pathname },
       });
     }
-  }
+  };
 
   redirectToLobby = (replace, id) => {
     replace(`/game/${id}/lobby`);
-  }
+  };
 
   redirectIfNoGameId = (nextState, replace) => {
     const { gameId } = this.props.store.getState().currentGame;
@@ -39,17 +39,20 @@ export default class Root extends Component {
     if (!gameId) {
       replace('/');
     }
-  }
+  };
 
   createGameAndRedirect = (nextState, replace, callback) => {
-    this.props.store.dispatch(fetchNewGame(true)).then((gameId) => {
-      this.redirectToLobby(replace, gameId);
-      callback();
-    }).catch((e) => {
-      console.log(e);
-      replace('/');
-    });
-  }
+    this.props.store
+      .dispatch(fetchNewGame(true))
+      .then((gameId) => {
+        this.redirectToLobby(replace, gameId);
+        callback();
+      })
+      .catch((e) => {
+        console.log(e);
+        replace('/');
+      });
+  };
 
   joinGameAndRedirect = (nextState, replace) => {
     const { id } = nextState.params;
@@ -57,7 +60,7 @@ export default class Root extends Component {
     this.props.store.dispatch(joinGame(id));
 
     this.redirectToLobby(replace, id);
-  }
+  };
 
   render() {
     const { store, socket } = this.props;
@@ -83,7 +86,6 @@ export default class Root extends Component {
             </Router>
           </SocketProvider>
         </Provider>
-        <DevTools store={store} />
       </div>
     );
   }
