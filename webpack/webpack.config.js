@@ -10,13 +10,10 @@ const paths = {
 };
 
 module.exports = {
+  mode: 'development',
   context: paths.root,
   devtool: 'cheap-eval-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    'webpack/hot/dev-server',
-    path.join(paths.src, 'app.js'),
-  ],
+  entry: ['webpack-hot-middleware/client', 'webpack/hot/dev-server', path.join(paths.src, 'app.js')],
   output: {
     path: paths.dist,
     filename: 'bundle.js',
@@ -29,24 +26,17 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          emitWarning: true,
-        }
-      }, {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
         },
-      }, {
+      },
+      {
         test: /\.scss$/,
         use: [
-          { loader: 'style-loader' },
+          { loader: 'style-loader', options: { sourceMap: true } },
           {
             loader: 'css-loader',
             options: {
@@ -55,14 +45,15 @@ module.exports = {
               sourceMap: true,
               localIdentName: '[local]___[hash:base64:5]',
             },
-          }, {
+          },
+          {
             loader: 'postcss-loader',
             options: {
-              plugins: () => ([
-                autoprefixer({ browsers: ['last 2 versions'] }),
-              ]),
+              sourceMap: true,
+              plugins: () => [autoprefixer({ browsers: ['last 2 versions'] })],
             },
-          }, {
+          },
+          {
             loader: 'sass-loader',
             options: {
               outputStyle: 'expanded',
@@ -76,7 +67,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
