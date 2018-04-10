@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./webpack/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "lint": "eslint src"
   },
   "author": "Boyd Dames",
@@ -30,12 +30,13 @@
     "uuid": "3.0.1"
   },
   "devDependencies": {
-    "babel-core": "6.22.1",
-    "babel-eslint": "7.1.1",
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.2.2",
     "babel-loader": "7.1.4",
-    "babel-preset-es2015": "6.22.0",
-    "babel-preset-react": "6.22.0",
-    "babel-preset-stage-0": "6.22.0",
+    "babel-plugin-transform-export-extensions": "6.22.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-1": "6.24.1",
     "chalk": "1.1.3",
     "css-loader": "0.28.11",
     "eslint": "3.15.0",
